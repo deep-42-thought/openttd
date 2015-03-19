@@ -20,13 +20,13 @@
  */
 class ScriptLog : public ScriptObject {
 	/* ScriptController needs access to Enum and Log, in order to keep the flow from
-	 *  OpenTTD core to NoAI API clear and simple. */
+	 *  OpenTTD core to script API clear and simple. */
 	friend class ScriptController;
 
 public:
 	/**
 	 * Log levels; The value is also feed to DEBUG() lvl.
-	 *  This has no use for you, as AI writer.
+	 *  This has no use for you, as script writer.
 	 * @api -all
 	 */
 	enum ScriptLogType {
@@ -38,8 +38,8 @@ public:
 	};
 
 	/**
-	 * Internal representation of the log-data inside the AI.
-	 *  This has no use for you, as AI writer.
+	 * Internal representation of the log-data inside the script.
+	 *  This has no use for you, as script writer.
 	 * @api -all
 	 */
 	struct LogData {
@@ -53,18 +53,21 @@ public:
 	/**
 	 * Print an Info message to the logs.
 	 * @param message The message to log.
+	 * @note Special characters such as U+0000-U+0019 and U+E000-U+E1FF are not supported and removed or replaced by a question mark. This includes newlines and tabs.
 	 */
 	static void Info(const char *message);
 
 	/**
 	 * Print a Warning message to the logs.
 	 * @param message The message to log.
+	 * @note Special characters such as U+0000-U+0019 and U+E000-U+E1FF are not supported and removed or replaced by a question mark. This includes newlines and tabs.
 	 */
 	static void Warning(const char *message);
 
 	/**
 	 * Print an Error message to the logs.
 	 * @param message The message to log.
+	 * @note Special characters such as U+0000-U+0019 and U+E000-U+E1FF are not supported and removed or replaced by a question mark. This includes newlines and tabs.
 	 */
 	static void Error(const char *message);
 

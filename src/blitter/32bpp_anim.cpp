@@ -15,6 +15,8 @@
 
 #include "../table/sprites.h"
 
+#include "../safeguards.h"
+
 /** Instantiation of the 32bpp with animation blitter factory. */
 static FBlitter_32bppAnim iFBlitter_32bppAnim;
 
@@ -31,13 +33,13 @@ inline void Blitter_32bppAnim::Draw(const Blitter::BlitterParams *bp, ZoomLevel 
 		src_n  = (const uint16 *)((const byte *)src_n  + *(const uint32 *)src_n);
 	}
 
-	uint32 *dst = (uint32 *)bp->dst + bp->top * bp->pitch + bp->left;
+	Colour *dst = (Colour *)bp->dst + bp->top * bp->pitch + bp->left;
 	uint16 *anim = this->anim_buf + ((uint32 *)bp->dst - (uint32 *)_screen.dst_ptr) + bp->top * this->anim_buf_width + bp->left;
 
 	const byte *remap = bp->remap; // store so we don't have to access it via bp everytime
 
 	for (int y = 0; y < bp->height; y++) {
-		uint32 *dst_ln = dst + bp->pitch;
+		Colour *dst_ln = dst + bp->pitch;
 		uint16 *anim_ln = anim + this->anim_buf_width;
 
 		const Colour *src_px_ln = (const Colour *)((const byte *)src_px + *(const uint32 *)src_px);
@@ -46,7 +48,7 @@ inline void Blitter_32bppAnim::Draw(const Blitter::BlitterParams *bp, ZoomLevel 
 		const uint16 *src_n_ln = (const uint16 *)((const byte *)src_n + *(const uint32 *)src_n);
 		src_n += 2;
 
-		uint32 *dst_end = dst + bp->skip_left;
+		Colour *dst_end = dst + bp->skip_left;
 
 		uint n;
 
@@ -133,6 +135,56 @@ inline void Blitter_32bppAnim::Draw(const Blitter::BlitterParams *bp, ZoomLevel 
 					}
 					break;
 
+				case BM_CRASH_REMAP:
+					if (src_px->a == 255) {
+						do {
+							uint m = *src_n;
+							if (m == 0) {
+								uint8 g = MakeDark(src_px->r, src_px->g, src_px->b);
+								*dst = ComposeColourRGBA(g, g, g, src_px->a, *dst);
+								*anim = 0;
+							} else {
+								uint r = remap[GB(m, 0, 8)];
+								*anim = r | (m & 0xFF00);
+								if (r != 0) *dst = this->AdjustBrightness(this->LookupColourInPalette(r), GB(m, 8, 8));
+							}
+							anim++;
+							dst++;
+							src_px++;
+							src_n++;
+						} while (--n != 0);
+					} else {
+						do {
+							uint m = *src_n;
+							if (m == 0) {
+								if (src_px->a != 0) {
+									uint8 g = MakeDark(src_px->r, src_px->g, src_px->b);
+									*dst = ComposeColourRGBA(g, g, g, src_px->a, *dst);
+									*anim = 0;
+								}
+							} else {
+								uint r = remap[GB(m, 0, 8)];
+								*anim = 0;
+								if (r != 0) *dst = ComposeColourPANoCheck(this->AdjustBrightness(this->LookupColourInPalette(r), GB(m, 8, 8)), src_px->a, *dst);
+							}
+							anim++;
+							dst++;
+							src_px++;
+							src_n++;
+						} while (--n != 0);
+					}
+					break;
+
+
+				case BM_BLACK_REMAP:
+					do {
+						*dst++ = Colour(0, 0, 0);
+						*anim++ = 0;
+						src_px++;
+						src_n++;
+					} while (--n != 0);
+					break;
+
 				case BM_TRANSPARENT:
 					/* TODO -- We make an assumption here that the remap in fact is transparency, not some colour.
 					 *  This is never a problem with the code we produce, but newgrfs can make it fail... or at least:
@@ -208,6 +260,8 @@ void Blitter_32bppAnim::Draw(Blitter::BlitterParams *bp, BlitterMode mode, ZoomL
 		case BM_NORMAL:       Draw<BM_NORMAL>      (bp, zoom); return;
 		case BM_COLOUR_REMAP: Draw<BM_COLOUR_REMAP>(bp, zoom); return;
 		case BM_TRANSPARENT:  Draw<BM_TRANSPARENT> (bp, zoom); return;
+		case BM_CRASH_REMAP:  Draw<BM_CRASH_REMAP> (bp, zoom); return;
+		case BM_BLACK_REMAP:  Draw<BM_BLACK_REMAP> (bp, zoom); return;
 	}
 }
 
@@ -219,7 +273,7 @@ void Blitter_32bppAnim::DrawColourMappingRect(void *dst, int width, int height, 
 		return;
 	}
 
-	uint32 *udst = (uint32 *)dst;
+	Colour *udst = (Colour *)dst;
 	uint16 *anim;
 
 	anim = this->anim_buf + ((uint32 *)dst - (uint32 *)_screen.dst_ptr);
@@ -256,7 +310,7 @@ void Blitter_32bppAnim::DrawColourMappingRect(void *dst, int width, int height, 
 
 void Blitter_32bppAnim::SetPixel(void *video, int x, int y, uint8 colour)
 {
-	*((uint32 *)video + x + y * _screen.pitch) = LookupColourInPalette(colour);
+	*((Colour *)video + x + y * _screen.pitch) = LookupColourInPalette(colour);
 
 	/* Set the colour in the anim-buffer too, if we are rendering to the screen */
 	if (_screen_disable_anim) return;
@@ -271,13 +325,13 @@ void Blitter_32bppAnim::DrawRect(void *video, int width, int height, uint8 colou
 		return;
 	}
 
-	uint32 colour32 = LookupColourInPalette(colour);
+	Colour colour32 = LookupColourInPalette(colour);
 	uint16 *anim_line;
 
 	anim_line = ((uint32 *)video - (uint32 *)_screen.dst_ptr) + this->anim_buf;
 
 	do {
-		uint32 *dst = (uint32 *)video;
+		Colour *dst = (Colour *)video;
 		uint16 *anim = anim_line;
 
 		for (int i = width; i > 0; i--) {
@@ -296,13 +350,13 @@ void Blitter_32bppAnim::CopyFromBuffer(void *video, const void *src, int width, 
 {
 	assert(!_screen_disable_anim);
 	assert(video >= _screen.dst_ptr && video <= (uint32 *)_screen.dst_ptr + _screen.width + _screen.height * _screen.pitch);
-	uint32 *dst = (uint32 *)video;
+	Colour *dst = (Colour *)video;
 	const uint32 *usrc = (const uint32 *)src;
 	uint16 *anim_line = ((uint32 *)video - (uint32 *)_screen.dst_ptr) + this->anim_buf;
 
 	for (; height > 0; height--) {
 		/* We need to keep those for palette animation. */
-		uint32 *dst_pal = dst;
+		Colour *dst_pal = dst;
 		uint16 *anim_pal = anim_line;
 
 		memcpy(dst, usrc, width * sizeof(uint32));
@@ -422,7 +476,7 @@ void Blitter_32bppAnim::PaletteAnimate(const Palette &palette)
 	assert(this->palette.first_dirty == PALETTE_ANIM_START || this->palette.first_dirty == 0);
 
 	const uint16 *anim = this->anim_buf;
-	uint32 *dst = (uint32 *)_screen.dst_ptr;
+	Colour *dst = (Colour *)_screen.dst_ptr;
 
 	/* Let's walk the anim buffer and try to find the pixels */
 	for (int y = this->anim_buf_height; y != 0 ; y--) {
@@ -439,7 +493,7 @@ void Blitter_32bppAnim::PaletteAnimate(const Palette &palette)
 	}
 
 	/* Make sure the backend redraws the whole screen */
-	_video_driver->MakeDirty(0, 0, _screen.width, _screen.height);
+	VideoDriver::GetInstance()->MakeDirty(0, 0, _screen.width, _screen.height);
 }
 
 Blitter::PaletteAnimation Blitter_32bppAnim::UsePaletteAnimation()

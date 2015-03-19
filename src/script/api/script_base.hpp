@@ -20,7 +20,7 @@
  *
  * @note The random functions are not called Random and RandomRange, because
  *        RANDOM_DEBUG does some tricky stuff, which messes with those names.
- * @note In MP we cannot use Random because that will cause desyncs (AIs are
+ * @note In MP we cannot use Random because that will cause desyncs (scripts are
  *        ran on the server only, not on all clients). This means that
  *        we use InteractiveRandom in MP. Rand() takes care of this for you.
  */
@@ -59,6 +59,7 @@ public:
 	 *   After all, it is a random function.
 	 * @param out How many times it should return true.
 	 * @param max Out of this many times.
+	 * @pre \a out is at most equal to \a max.
 	 * @return True if the chance worked out.
 	 */
 	static bool Chance(uint out, uint max);
@@ -69,6 +70,7 @@ public:
 	 * @param unused_param This parameter is not used, but is needed to work with lists.
 	 * @param out How many times it should return true.
 	 * @param max Out of this many times.
+	 * @pre \a out is at most equal to \a max.
 	 * @return True if the chance worked out.
 	 */
 	static bool ChanceItem(int unused_param, uint out, uint max);

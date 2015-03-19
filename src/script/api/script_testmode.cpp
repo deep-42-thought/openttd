@@ -14,6 +14,8 @@
 #include "../script_instance.hpp"
 #include "../script_fatalerror.hpp"
 
+#include "../../safeguards.h"
+
 bool ScriptTestMode::ModeProc()
 {
 	/* In test mode we only return 'false', telling the DoCommand it
@@ -31,9 +33,9 @@ ScriptTestMode::ScriptTestMode()
 ScriptTestMode::~ScriptTestMode()
 {
 	if (this->GetDoCommandModeInstance() != this) {
-		/* Ignore this error if the AI already died. */
+		/* Ignore this error if the script already died. */
 		if (!ScriptObject::GetActiveInstance()->IsDead()) {
-			throw Script_FatalError("AITestmode object was removed while it was not the latest AI*Mode object created.");
+			throw Script_FatalError("Testmode object was removed while it was not the latest *Mode object created.");
 		}
 	}
 	this->SetDoCommandMode(this->last_mode, this->last_instance);

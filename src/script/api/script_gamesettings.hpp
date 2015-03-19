@@ -30,9 +30,9 @@
  * @note The names of the setting for ScriptGameSettings::IsValid and
  *       ScriptGameSettings::GetValue are the same ones as those that are shown by
  *       the list_settings command in the in-game console. Settings that are
- *       string based are NOT supported and AIGAmeSettings::IsValid will return
+ *       string based are NOT supported and GameSettings::IsValid will return
  *       false for them. These settings will not be supported either because
- *       they have no relevance for the AI (default client names, server IPs,
+ *       they have no relevance for the script (default client names, server IPs,
  *       etc.).
  */
 class ScriptGameSettings : public ScriptObject {
@@ -43,7 +43,7 @@ public:
 	 * @warning Results of this function are not governed by the API. This means
 	 *          that a setting that previously existed can be gone or has
 	 *          changed its name.
-	 * @note Results achieved in the past offer no gurantee for the future.
+	 * @note Results achieved in the past offer no guarantee for the future.
 	 * @return True if and only if the setting is valid.
 	 */
 	static bool IsValid(const char *setting);
@@ -56,7 +56,7 @@ public:
 	 *          that the value of settings may be out of the expected range. It
 	 *          also means that a setting that previously existed can be gone or
 	 *          has changed its name/characteristics.
-	 * @note Results achieved in the past offer no gurantee for the future.
+	 * @note Results achieved in the past offer no guarantee for the future.
 	 * @return The value for the setting.
 	 */
 	static int32 GetValue(const char *setting);
@@ -67,13 +67,13 @@ public:
 	 * @param value The value to set the setting to.
 	 * @pre IsValid(setting).
 	 * @return True if the action succeeded.
-	 * @note Results achieved in the past offer no gurantee for the future.
+	 * @note Results achieved in the past offer no guarantee for the future.
 	 * @api -ai
 	 */
 	static bool SetValue(const char *setting, int value);
 
 	/**
-	 * Checks whether the given vehicle-type is disabled for AIs.
+	 * Checks whether the given vehicle-type is disabled for companies.
 	 * @param vehicle_type The vehicle-type to check.
 	 * @return True if the vehicle-type is disabled.
 	 * @api -game

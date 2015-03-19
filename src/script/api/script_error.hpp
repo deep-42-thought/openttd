@@ -16,7 +16,7 @@
 #include <map>
 
 /**
- * Helper to write precondition enforcers for the AI API in an abbreviated manner.
+ * Helper to write precondition enforcers for the script API in an abbreviated manner.
  * @param returnval The value to return on failure.
  * @param condition The condition that must be obeyed.
  */
@@ -27,7 +27,7 @@
 	}
 
 /**
- * Helper to write precondition enforcers for the AI API in an abbreviated manner.
+ * Helper to write precondition enforcers for the script API in an abbreviated manner.
  * @param returnval The value to return on failure.
  * @param condition The condition that must be obeyed.
  * @param error_code The error code passed to ScriptObject::SetLastError.
@@ -36,6 +36,21 @@
 	if (!(condition)) {                                                      \
 		ScriptObject::SetLastError(error_code);                                    \
 		return returnval;                                                      \
+	}
+
+/**
+ * Helper to write precondition enforcers for the script API in an abbreviated manner for encoded texts.
+ * @param returnval The value to return on failure.
+ * @param string The string that is checked.
+ */
+#define EnforcePreconditionEncodedText(returnval, string)   \
+	if ((string) == NULL) { \
+		ScriptObject::SetLastError(ScriptError::ERR_PRECONDITION_TOO_MANY_PARAMETERS); \
+		return returnval; \
+	} \
+	if (StrEmpty(string)) { \
+		ScriptObject::SetLastError(ScriptError::ERR_PRECONDITION_FAILED); \
+		return returnval; \
 	}
 
 /**
@@ -81,9 +96,11 @@ public:
 		ERR_PRECONDITION_FAILED,                      // []
 		/** A string supplied was too long */
 		ERR_PRECONDITION_STRING_TOO_LONG,             // []
+		/** A string had too many parameters */
+		ERR_PRECONDITION_TOO_MANY_PARAMETERS,         // []
 		/** The company you use is invalid */
 		ERR_PRECONDITION_INVALID_COMPANY,             // []
-		/** An error returned by a NewGRF. No possibility to get the exact error in an AI readable format */
+		/** An error returned by a NewGRF. No possibility to get the exact error in an script readable format */
 		ERR_NEWGRF_SUPPLIED_ERROR,                    // []
 
 		/** Base for general errors */
@@ -129,7 +146,7 @@ public:
 	/**
 	 * Check the membership of the last thrown error.
 	 * @return The category the error belongs to.
-	 * @note The last throw error can be aquired by calling GetLastError().
+	 * @note The last throw error can be acquired by calling GetLastError().
 	 */
 	static ErrorCategories GetErrorCategory();
 
@@ -149,31 +166,31 @@ public:
 	 * Get the error based on the OpenTTD StringID.
 	 * @api -all
 	 * @param internal_string_id The string to convert.
-	 * @return The NoAI equivalent error message.
+	 * @return The script equivalent error message.
 	 */
 	static ScriptErrorType StringToError(StringID internal_string_id);
 
 	/**
-	 * Map an internal OpenTTD error message to its NoAI equivalent.
+	 * Map an internal OpenTTD error message to its script equivalent.
 	 * @api -all
 	 * @param internal_string_id The OpenTTD StringID used for an error.
-	 * @param ai_error_msg The NoAI equivalent error message.
+	 * @param ai_error_msg The script equivalent error message.
 	 */
 	static void RegisterErrorMap(StringID internal_string_id, ScriptErrorType ai_error_msg);
 
 	/**
-	 * Map an internal OpenTTD error message to its NoAI equivalent.
+	 * Map an internal OpenTTD error message to its script equivalent.
 	 * @api -all
-	 * @param ai_error_msg The NoAI error message representation.
+	 * @param ai_error_msg The script error message representation.
 	 * @param message The string representation of this error message, used for debug purposes.
 	 */
 	static void RegisterErrorMapString(ScriptErrorType ai_error_msg, const char *message);
 
 private:
-	typedef std::map<StringID, ScriptErrorType> ScriptErrorMap;           ///< The type for mapping between error (internal OpenTTD) StringID to the AI error type.
+	typedef std::map<StringID, ScriptErrorType> ScriptErrorMap;           ///< The type for mapping between error (internal OpenTTD) StringID to the script error type.
 	typedef std::map<ScriptErrorType, const char *> ScriptErrorMapString; ///< The type for mapping between error type and textual representation.
 
-	static ScriptErrorMap error_map;              ///< The mapping between error (internal OpenTTD) StringID to the AI error type.
+	static ScriptErrorMap error_map;              ///< The mapping between error (internal OpenTTD) StringID to the script error type.
 	static ScriptErrorMapString error_map_string; ///< The mapping between error type and textual representation.
 };
 

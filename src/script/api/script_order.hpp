@@ -34,7 +34,7 @@ public:
 		/** Destination of new order is to far away from the previous order */
 		ERR_ORDER_TOO_FAR_AWAY_FROM_PREVIOUS_DESTINATION,    // [STR_ERROR_TOO_FAR_FROM_PREVIOUS_DESTINATION]
 
-		/* Aircraft has not enough range to copy/share orders. */
+		/** Aircraft has not enough range to copy/share orders. */
 		ERR_ORDER_AIRCRAFT_NOT_ENOUGH_RANGE,                 // [STR_ERROR_AIRCRAFT_NOT_ENOUGH_RANGE]
 	};
 
@@ -43,45 +43,45 @@ public:
 	 */
 	enum ScriptOrderFlags {
 		/** Just go to the station/depot, stop unload if possible and load if needed. */
-		AIOF_NONE              = 0,
+		OF_NONE              = 0,
 
 		/** Do not stop at the stations that are passed when going to the destination. Only for trains and road vehicles. */
-		AIOF_NON_STOP_INTERMEDIATE = 1 << 0,
-		/** Do not stop at the destionation station. Only for trains and road vehicles. */
-		AIOF_NON_STOP_DESTINATION  = 1 << 1,
+		OF_NON_STOP_INTERMEDIATE = 1 << 0,
+		/** Do not stop at the destination station. Only for trains and road vehicles. */
+		OF_NON_STOP_DESTINATION  = 1 << 1,
 
-		/** Always unload the vehicle; only for stations. Cannot be set when AIOF_TRANSFER or AIOF_NO_UNLOAD is set. */
-		AIOF_UNLOAD            = 1 << 2,
-		/** Transfer instead of deliver the goods; only for stations. Cannot be set when AIOF_UNLOAD or AIOF_NO_UNLOAD is set. */
-		AIOF_TRANSFER          = 1 << 3,
-		/** Never unload the vehicle; only for stations. Cannot be set when AIOF_UNLOAD, AIOF_TRANSFER or AIOF_NO_LOAD is set. */
-		AIOF_NO_UNLOAD         = 1 << 4,
+		/** Always unload the vehicle; only for stations. Cannot be set when OF_TRANSFER or OF_NO_UNLOAD is set. */
+		OF_UNLOAD            = 1 << 2,
+		/** Transfer instead of deliver the goods; only for stations. Cannot be set when OF_UNLOAD or OF_NO_UNLOAD is set. */
+		OF_TRANSFER          = 1 << 3,
+		/** Never unload the vehicle; only for stations. Cannot be set when OF_UNLOAD, OF_TRANSFER or OF_NO_LOAD is set. */
+		OF_NO_UNLOAD         = 1 << 4,
 
-		/** Wait till the vehicle is fully loaded; only for stations. Cannot be set when AIOF_NO_LOAD is set. */
-		AIOF_FULL_LOAD         = 2 << 5,
-		/** Wait till at least one cargo of the vehicle is fully loaded; only for stations. Cannot be set when AIOF_NO_LOAD is set. */
-		AIOF_FULL_LOAD_ANY     = 3 << 5,
-		/** Do not load any cargo; only for stations. Cannot be set when AIOF_NO_UNLOAD, AIOF_FULL_LOAD or AIOF_FULL_LOAD_ANY is set. */
-		AIOF_NO_LOAD           = 1 << 7,
+		/** Wt till the vehicle is fully loaded; only for stations. Cannot be set when OF_NO_LOAD is set. */
+		OF_FULL_LOAD         = 2 << 5,
+		/** Wt till at least one cargo of the vehicle is fully loaded; only for stations. Cannot be set when OF_NO_LOAD is set. */
+		OF_FULL_LOAD_ANY     = 3 << 5,
+		/** Do not load any cargo; only for stations. Cannot be set when OF_NO_UNLOAD, OF_FULL_LOAD or OF_FULL_LOAD_ANY is set. */
+		OF_NO_LOAD           = 1 << 7,
 
 		/** Service the vehicle when needed, otherwise skip this order; only for depots. */
-		AIOF_SERVICE_IF_NEEDED = 1 << 2,
+		OF_SERVICE_IF_NEEDED = 1 << 2,
 		/** Stop in the depot instead of only go there for servicing; only for depots. */
-		AIOF_STOP_IN_DEPOT     = 1 << 3,
+		OF_STOP_IN_DEPOT     = 1 << 3,
 		/** Go to nearest depot. */
-		AIOF_GOTO_NEAREST_DEPOT = 1 << 8,
+		OF_GOTO_NEAREST_DEPOT = 1 << 8,
 
 		/** All flags related to non-stop settings. */
-		AIOF_NON_STOP_FLAGS    = AIOF_NON_STOP_INTERMEDIATE | AIOF_NON_STOP_DESTINATION,
+		OF_NON_STOP_FLAGS    = OF_NON_STOP_INTERMEDIATE | OF_NON_STOP_DESTINATION,
 		/** All flags related to unloading. */
-		AIOF_UNLOAD_FLAGS      = AIOF_TRANSFER | AIOF_UNLOAD | AIOF_NO_UNLOAD,
+		OF_UNLOAD_FLAGS      = OF_TRANSFER | OF_UNLOAD | OF_NO_UNLOAD,
 		/** All flags related to loading. */
-		AIOF_LOAD_FLAGS        = AIOF_FULL_LOAD | AIOF_FULL_LOAD_ANY | AIOF_NO_LOAD,
+		OF_LOAD_FLAGS        = OF_FULL_LOAD | OF_FULL_LOAD_ANY | OF_NO_LOAD,
 		/** All flags related to depots. */
-		AIOF_DEPOT_FLAGS       = AIOF_SERVICE_IF_NEEDED | AIOF_STOP_IN_DEPOT | AIOF_GOTO_NEAREST_DEPOT,
+		OF_DEPOT_FLAGS       = OF_SERVICE_IF_NEEDED | OF_STOP_IN_DEPOT | OF_GOTO_NEAREST_DEPOT,
 
 		/** For marking invalid order flags */
-		AIOF_INVALID           = 0xFFFF,
+		OF_INVALID           = 0xFFFF,
 	};
 
 	/**
@@ -123,7 +123,7 @@ public:
 	 * Index in the list of orders for a vehicle. The first order has index 0, the second
 	 * order index 1, etc. The current order can be queried by using ORDER_CURRENT. Do not
 	 * use ORDER_INVALID yourself, it's used as return value by for example ResolveOrderPosition.
-	 * @note Automatic orders are hidden from AIs, so OrderPosition 0 will always be the first
+	 * @note Automatic orders are hidden from scripts, so OrderPosition 0 will always be the first
 	 * manual order.
 	 */
 	enum OrderPosition {
@@ -510,7 +510,7 @@ public:
 	 * @param order_flags The new flags given to the order.
 	 * @pre IsValidVehicleOrder(vehicle_id, order_position).
 	 * @pre AreOrderFlagsValid(GetOrderDestination(vehicle_id, order_position), order_flags).
-	 * @pre (order_flags & AIOF_GOTO_NEAREST_DEPOT) == (GetOrderFlags(vehicle_id, order_position) & AIOF_GOTO_NEAREST_DEPOT).
+	 * @pre (order_flags & OF_GOTO_NEAREST_DEPOT) == (GetOrderFlags(vehicle_id, order_position) & OF_GOTO_NEAREST_DEPOT).
 	 * @exception ScriptError::ERR_OWNED_BY_ANOTHER_COMPANY
 	 * @return True if and only if the order was changed.
 	 * @api -game
@@ -524,6 +524,7 @@ public:
 	 * @param order_position_target The target order
 	 * @pre IsValidVehicleOrder(vehicle_id, order_position_move).
 	 * @pre IsValidVehicleOrder(vehicle_id, order_position_target).
+	 * @pre order_position_move != order_position_target.
 	 * @exception ScriptError::ERR_OWNED_BY_ANOTHER_COMPANY
 	 * @return True if and only if the order was moved.
 	 * @note If the order is moved to a lower place (e.g. from 7 to 2)
@@ -585,10 +586,17 @@ public:
 
 	/**
 	 * Get the distance between two points for a vehicle type.
+	 * Use this function to compute the distance between two tiles wrt. a vehicle type.
+	 * These vehicle-type specific distances are independent from other map distances, you may
+	 * use the result of this function to compare it with the result of
+	 * ScriptEngine::GetMaximumOrderDistance or ScriptVehicle::GetMaximumOrderDistance.
 	 * @param vehicle_type The vehicle type to get the distance for.
 	 * @param origin_tile Origin, can be any tile or a tile of a specific station.
-	 * @param dest_tile Destination, ca be any tile or a tile of a specific station.
-	 * @return The distance between the origin and the destination for a vehicle of the given vehicle type.
+	 * @param dest_tile Destination, can be any tile or a tile of a specific station.
+	 * @return The distance between the origin and the destination for a
+	 *         vehicle of the given vehicle type.
+	 * @note   The unit of the order distances is unspecified and should
+	 *         not be compared with map distances
 	 * @see ScriptEngine::GetMaximumOrderDistance and ScriptVehicle::GetMaximumOrderDistance
 	 */
 	static uint GetOrderDistance(ScriptVehicle::VehicleType vehicle_type, TileIndex origin_tile, TileIndex dest_tile);

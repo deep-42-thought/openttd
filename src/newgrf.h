@@ -16,6 +16,8 @@
 #include "rail_type.h"
 #include "fileio_type.h"
 #include "core/bitmath_func.hpp"
+#include "core/alloc_type.hpp"
+#include "core/smallvec_type.hpp"
 
 /**
  * List of different canal 'features'.
@@ -98,7 +100,7 @@ struct GRFLabel {
 };
 
 /** Dynamic data of a loaded NewGRF */
-struct GRFFile {
+struct GRFFile : ZeroedMemoryAllocator {
 	char *filename;
 	bool is_ottdfile;
 	uint32 grfid;
@@ -120,13 +122,11 @@ struct GRFFile {
 
 	GRFLabel *label; ///< Pointer to the first label. This is a linked list, not an array.
 
-	uint8 cargo_max;
-	CargoLabel *cargo_list;
-	uint8 cargo_map[NUM_CARGO];
+	SmallVector<CargoLabel, 4> cargo_list;          ///< Cargo translation table (local ID -> label)
+	uint8 cargo_map[NUM_CARGO];                     ///< Inverse cargo translation table (CargoID -> local ID)
 
-	uint8 railtype_max;
-	RailTypeLabel *railtype_list;
-	RailType railtype_map[RAILTYPE_END];
+	SmallVector<RailTypeLabel, 4> railtype_list;    ///< Railtype translation table
+	RailTypeByte railtype_map[RAILTYPE_END];
 
 	CanalProperties canal_local_properties[CF_END]; ///< Canal properties as set by this NewGRF
 
@@ -137,6 +137,9 @@ struct GRFFile {
 
 	uint32 grf_features;                     ///< Bitset of GrfSpecFeature the grf uses
 	PriceMultipliers price_base_multipliers; ///< Price base multipliers as set by the grf.
+
+	GRFFile(const struct GRFConfig *config);
+	~GRFFile();
 
 	/** Get GRF Parameter with range checking */
 	uint32 GetParam(uint number) const
@@ -164,7 +167,7 @@ struct GRFLoadedFeatures {
 };
 
 /**
- * Check for grf miscelaneous bits
+ * Check for grf miscellaneous bits
  * @param bit The bit to check.
  * @return Whether the bit is set.
  */

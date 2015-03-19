@@ -12,6 +12,8 @@
 #include "../stdafx.h"
 #include "32bpp_base.hpp"
 
+#include "../safeguards.h"
+
 void *Blitter_32bppBase::MoveTo(void *video, int x, int y)
 {
 	return (uint32 *)video + x + y * _screen.pitch;
@@ -19,15 +21,15 @@ void *Blitter_32bppBase::MoveTo(void *video, int x, int y)
 
 void Blitter_32bppBase::SetPixel(void *video, int x, int y, uint8 colour)
 {
-	*((uint32 *)video + x + y * _screen.pitch) = LookupColourInPalette(colour);
+	*((Colour *)video + x + y * _screen.pitch) = LookupColourInPalette(colour);
 }
 
 void Blitter_32bppBase::DrawRect(void *video, int width, int height, uint8 colour)
 {
-	uint32 colour32 = LookupColourInPalette(colour);
+	Colour colour32 = LookupColourInPalette(colour);
 
 	do {
-		uint32 *dst = (uint32 *)video;
+		Colour *dst = (Colour *)video;
 		for (int i = width; i > 0; i--) {
 			*dst = colour32;
 			dst++;
@@ -107,7 +109,7 @@ void Blitter_32bppBase::ScrollBuffer(void *video, int &left, int &top, int &widt
 		dst = (uint32 *)video + left + top * _screen.pitch;
 		src = dst - scroll_y * _screen.pitch;
 
-		/* Decrese height. (scroll_y is <=0). */
+		/* Decrease height. (scroll_y is <=0). */
 		height += scroll_y;
 		assert(height > 0);
 

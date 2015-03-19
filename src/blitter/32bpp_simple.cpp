@@ -15,17 +15,19 @@
 
 #include "../table/sprites.h"
 
+#include "../safeguards.h"
+
 /** Instantiation of the simple 32bpp blitter factory. */
 static FBlitter_32bppSimple iFBlitter_32bppSimple;
 
 void Blitter_32bppSimple::Draw(Blitter::BlitterParams *bp, BlitterMode mode, ZoomLevel zoom)
 {
 	const Blitter_32bppSimple::Pixel *src, *src_line;
-	uint32 *dst, *dst_line;
+	Colour *dst, *dst_line;
 
 	/* Find where to start reading in the source sprite */
 	src_line = (const Blitter_32bppSimple::Pixel *)bp->sprite + (bp->skip_top * bp->sprite_width + bp->skip_left) * ScaleByZoom(1, zoom);
-	dst_line = (uint32 *)bp->dst + bp->top * bp->pitch + bp->left;
+	dst_line = (Colour *)bp->dst + bp->top * bp->pitch + bp->left;
 
 	for (int y = 0; y < bp->height; y++) {
 		dst = dst_line;
@@ -42,6 +44,23 @@ void Blitter_32bppSimple::Draw(Blitter::BlitterParams *bp, BlitterMode mode, Zoo
 						if (src->a != 0) *dst = ComposeColourRGBA(src->r, src->g, src->b, src->a, *dst);
 					} else {
 						if (bp->remap[src->m] != 0) *dst = ComposeColourPA(this->AdjustBrightness(this->LookupColourInPalette(bp->remap[src->m]), src->v), src->a, *dst);
+					}
+					break;
+
+				case BM_CRASH_REMAP:
+					if (src->m == 0) {
+						if (src->a != 0) {
+							uint8 g = MakeDark(src->r, src->g, src->b);
+							*dst = ComposeColourRGBA(g, g, g, src->a, *dst);
+						}
+					} else {
+						if (bp->remap[src->m] != 0) *dst = ComposeColourPA(this->AdjustBrightness(this->LookupColourInPalette(bp->remap[src->m]), src->v), src->a, *dst);
+					}
+					break;
+
+				case BM_BLACK_REMAP:
+					if (src->a != 0) {
+						*dst = Colour(0, 0, 0);
 					}
 					break;
 
@@ -66,7 +85,7 @@ void Blitter_32bppSimple::Draw(Blitter::BlitterParams *bp, BlitterMode mode, Zoo
 
 void Blitter_32bppSimple::DrawColourMappingRect(void *dst, int width, int height, PaletteID pal)
 {
-	uint32 *udst = (uint32 *)dst;
+	Colour *udst = (Colour *)dst;
 
 	if (pal == PALETTE_TO_TRANSPARENT) {
 		do {
@@ -92,10 +111,10 @@ void Blitter_32bppSimple::DrawColourMappingRect(void *dst, int width, int height
 	DEBUG(misc, 0, "32bpp blitter doesn't know how to draw this colour table ('%d')", pal);
 }
 
-Sprite *Blitter_32bppSimple::Encode(SpriteLoader::Sprite *sprite, AllocatorProc *allocator)
+Sprite *Blitter_32bppSimple::Encode(const SpriteLoader::Sprite *sprite, AllocatorProc *allocator)
 {
 	Blitter_32bppSimple::Pixel *dst;
-	Sprite *dest_sprite = (Sprite *)allocator(sizeof(*dest_sprite) + sprite->height * sprite->width * sizeof(*dst));
+	Sprite *dest_sprite = (Sprite *)allocator(sizeof(*dest_sprite) + (size_t)sprite->height * (size_t)sprite->width * sizeof(*dst));
 
 	dest_sprite->height = sprite->height;
 	dest_sprite->width  = sprite->width;
@@ -122,10 +141,10 @@ Sprite *Blitter_32bppSimple::Encode(SpriteLoader::Sprite *sprite, AllocatorProc 
 			dst[i].v = rgb_max;
 
 			/* Pre-convert the mapping channel to a RGB value */
-			uint colour = this->AdjustBrightness(this->LookupColourInPalette(src->m), dst[i].v);
-			dst[i].r = GB(colour, 16, 8);
-			dst[i].g = GB(colour, 8,  8);
-			dst[i].b = GB(colour, 0,  8);
+			Colour colour = this->AdjustBrightness(this->LookupColourInPalette(src->m), dst[i].v);
+			dst[i].r = colour.r;
+			dst[i].g = colour.g;
+			dst[i].b = colour.b;
 			dst[i].a = src->a;
 			dst[i].m = src->m;
 		}

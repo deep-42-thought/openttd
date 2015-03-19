@@ -17,6 +17,8 @@
 #include "../../strings_func.h"
 #include "../../date_func.h"
 
+#include "../../safeguards.h"
+
 /* static */ bool ScriptBridge::IsValidBridge(BridgeID bridge_id)
 {
 	return bridge_id < MAX_BRIDGES && ::GetBridgeSpec(bridge_id)->avail_year <= _cur_year;
@@ -36,7 +38,7 @@
 
 /**
  * Helper function to connect a just built bridge to nearby roads.
- * @param instance The AI we have to built the road for.
+ * @param instance The script instance we have to built the road for.
  */
 static void _DoCommandReturnBuildBridge2(class ScriptInstance *instance)
 {
@@ -52,7 +54,7 @@ static void _DoCommandReturnBuildBridge2(class ScriptInstance *instance)
 
 /**
  * Helper function to connect a just built bridge to nearby roads.
- * @param instance The AI we have to built the road for.
+ * @param instance The script instance we have to built the road for.
  */
 static void _DoCommandReturnBuildBridge1(class ScriptInstance *instance)
 {
@@ -73,6 +75,7 @@ static void _DoCommandReturnBuildBridge1(class ScriptInstance *instance)
 	EnforcePrecondition(false, TileX(start) == TileX(end) || TileY(start) == TileY(end));
 	EnforcePrecondition(false, vehicle_type == ScriptVehicle::VT_ROAD || vehicle_type == ScriptVehicle::VT_RAIL || vehicle_type == ScriptVehicle::VT_WATER);
 	EnforcePrecondition(false, vehicle_type != ScriptVehicle::VT_RAIL || ScriptRail::IsRailTypeAvailable(ScriptRail::GetCurrentRailType()));
+	EnforcePrecondition(false, vehicle_type != ScriptVehicle::VT_ROAD || ScriptRoad::IsRoadTypeAvailable(ScriptRoad::GetCurrentRoadType()));
 	EnforcePrecondition(false, ScriptObject::GetCompany() != OWNER_DEITY || vehicle_type == ScriptVehicle::VT_ROAD);
 
 	uint type = 0;

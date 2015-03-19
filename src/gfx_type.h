@@ -138,6 +138,12 @@ struct CursorVars {
 	bool in_window;  ///< mouse inside this window, determines drawing logic
 
 	bool vehchain;   ///< vehicle chain is dragged
+
+	bool UpdateCursorPosition(int x, int y, bool queued_warp);
+
+private:
+	bool queued_warp;
+	Point last_position;
 };
 
 /** Data about how and where to blit pixels. */
@@ -158,7 +164,34 @@ union Colour {
 		uint8 b, g, r, a; ///< colour channels in LE order
 #endif /* TTD_ENDIAN == TTD_BIG_ENDIAN */
 	};
+
+	/**
+	 * Create a new colour.
+	 * @param r The channel for the red colour.
+	 * @param g The channel for the green colour.
+	 * @param b The channel for the blue colour.
+	 * @param a The channel for the alpha/transparency.
+	 */
+	Colour(uint8 r, uint8 g, uint8 b, uint8 a = 0xFF) :
+#if TTD_ENDIAN == TTD_BIG_ENDIAN
+		a(a), r(r), g(g), b(b)
+#else
+		b(b), g(g), r(r), a(a)
+#endif /* TTD_ENDIAN == TTD_BIG_ENDIAN */
+	{
+	}
+
+	/**
+	 * Create a new colour.
+	 * @param The colour in the correct packed format.
+	 */
+	Colour(uint data = 0) : data(data)
+	{
+	}
 };
+
+assert_compile(sizeof(Colour) == sizeof(uint32));
+
 
 /** Available font sizes */
 enum FontSize {
@@ -271,6 +304,13 @@ struct Palette {
 	Colour palette[256]; ///< Current palette. Entry 0 has to be always fully transparent!
 	int first_dirty;     ///< The first dirty element.
 	int count_dirty;     ///< The number of dirty elements.
+};
+
+/** Modes for 8bpp support */
+enum Support8bpp {
+	S8BPP_NONE = 0, ///< No support for 8bpp by OS or hardware, force 32bpp blitters.
+	S8BPP_SYSTEM,   ///< No 8bpp support by hardware, do not try to use 8bpp video modes or hardware palettes.
+	S8BPP_HARDWARE, ///< Full 8bpp support by OS and hardware.
 };
 
 #endif /* GFX_TYPE_H */
