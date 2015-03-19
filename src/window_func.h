@@ -14,12 +14,13 @@
 
 #include "window_type.h"
 #include "company_type.h"
+#include "core/geometry_type.hpp"
 
 Window *FindWindowById(WindowClass cls, WindowNumber number);
 Window *FindWindowByClass(WindowClass cls);
 void ChangeWindowOwner(Owner old_owner, Owner new_owner);
 
-void ResizeWindow(Window *w, int x, int y);
+void ResizeWindow(Window *w, int x, int y, bool clamp_to_screen = true);
 int PositionMainToolbar(Window *w);
 int PositionStatusbar(Window *w);
 int PositionNewsMessage(Window *w);
@@ -51,5 +52,8 @@ void SetWindowClassesDirty(WindowClass cls);
 
 void DeleteWindowById(WindowClass cls, WindowNumber number, bool force = true);
 void DeleteWindowByClass(WindowClass cls);
+
+bool EditBoxInGlobalFocus();
+Point GetCaretPosition();
 
 #endif /* WINDOW_FUNC_H */

@@ -15,6 +15,8 @@
 #include "fileio_func.h"
 #include "core/smallmap_type.hpp"
 #include "gfx_type.h"
+#include "textfile_type.h"
+#include "textfile_gui.h"
 
 /* Forward declare these; can't do 'struct X' in functions as older GCCs barf on that */
 struct IniFile;
@@ -143,6 +145,22 @@ struct BaseSet {
 	{
 		return file->CheckMD5(subdir, SIZE_MAX);
 	}
+
+	/**
+	 * Search a textfile file next to this base media.
+	 * @param type The type of the textfile to search for.
+	 * @return The filename for the textfile, \c NULL otherwise.
+	 */
+	const char *GetTextfile(TextfileType type) const
+	{
+		for (uint i = 0; i < NUM_FILES; i++) {
+			const char *textfile = ::GetTextfile(type, BASESET_DIR, this->files[i].filename);
+			if (textfile != NULL) {
+				return textfile;
+			}
+		}
+		return NULL;
+	}
 };
 
 /**
@@ -183,6 +201,8 @@ public:
 		return num + fs.Scan(GetExtension(), BASESET_DIR, Tbase_set::SEARCH_IN_TARS);
 	}
 
+	static Tbase_set *GetAvailableSets();
+
 	static bool SetSet(const char *name);
 	static char *GetSetsList(char *p, const char *last);
 	static int GetNumSets();
@@ -199,6 +219,15 @@ public:
 	static bool HasSet(const ContentInfo *ci, bool md5sum);
 };
 
+/**
+ * Check whether there's a base set matching some information.
+ * @param ci The content info to compare it to.
+ * @param md5sum Should the MD5 checksum be tested as well?
+ * @param s The list with sets.
+ * @return The filename of the first file of the base set, or \c NULL if there is no match.
+ */
+template <class Tbase_set>
+const char *TryGetBaseSetFile(const ContentInfo *ci, bool md5sum, const Tbase_set *s);
 
 /** Types of graphics in the base graphics set */
 enum GraphicsFileType {
