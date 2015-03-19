@@ -101,6 +101,7 @@ struct GUISettings {
 	bool   timetable_in_ticks;               ///< whether to show the timetable in ticks rather than days
 	bool   quick_goto;                       ///< Allow quick access to 'goto button' in vehicle orders window
 	bool   auto_euro;                        ///< automatically switch to euro in 2002
+	byte   simulated_wormhole_signals;       ///< simulate signals in tunnel
 	byte   drag_signals_density;             ///< many signals density
 	Year   semaphore_build_before;           ///< build semaphore signals automatically before this year
 	byte   news_message_timeout;             ///< how much longer than the news message "age" should we keep the message in the history
