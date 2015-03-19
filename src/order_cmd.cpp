@@ -1897,14 +1897,14 @@ restart:
 
 /**
  * Checks if a vehicle has a depot in its order list.
- * @return True iff at least one order is a depot order.
+ * @return True iff at least one order is a depot order or a jump with condition on requires service.
  */
 bool Vehicle::HasDepotOrder() const
 {
 	const Order *order;
 
 	FOR_VEHICLE_ORDERS(this, order) {
-		if (order->IsType(OT_GOTO_DEPOT)) return true;
+		if (order->IsType(OT_GOTO_DEPOT) || (order->IsType(OT_CONDITIONAL) && (order->GetConditionVariable() == OCV_REQUIRES_SERVICE))) return true;
 	}
 
 	return false;
