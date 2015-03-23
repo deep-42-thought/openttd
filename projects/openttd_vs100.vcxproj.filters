@@ -132,6 +132,9 @@
     <ClCompile Include="..\src\cheat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\clipboard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\command.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -462,6 +465,15 @@
     <ClInclude Include="..\src\clear_func.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\clipboard_func.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\clipboard_gui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\clipboard_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\src\cmd_helper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -496,6 +508,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\console_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\copypaste_cmd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\cpu.h">
@@ -1083,6 +1098,9 @@
     <ClInclude Include="..\src\tile_type.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\tilearea_func.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\src\tilearea_type.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1305,6 +1323,9 @@
     <ClCompile Include="..\src\cheat_gui.cpp">
       <Filter>GUI Source Code</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\clipboard_gui.cpp">
+      <Filter>GUI Source Code</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\company_gui.cpp">
       <Filter>GUI Source Code</Filter>
     </ClCompile>
@@ -1476,6 +1497,9 @@
     <ClInclude Include="..\src\widgets\cheat_widget.h">
       <Filter>Widgets</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\widgets\clipboard_widget.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
     <ClInclude Include="..\src\widgets\company_widget.h">
       <Filter>Widgets</Filter>
     </ClInclude>
@@ -1633,6 +1657,9 @@
       <Filter>Command handlers</Filter>
     </ClCompile>
     <ClCompile Include="..\src\clear_cmd.cpp">
+      <Filter>Command handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\copypaste_cmd.cpp">
       <Filter>Command handlers</Filter>
     </ClCompile>
     <ClCompile Include="..\src\company_cmd.cpp">
