@@ -3560,7 +3560,7 @@ bool TrainController(Train *v, Vehicle *nomove, bool reverse)
 				v->x_pos = gp.x;
 				v->y_pos = gp.y;
 				v->UpdatePosition();
-				if ((v->vehstatus & VS_HIDDEN) == 0) v->Vehicle::UpdateViewport(true);
+				if (v->IsDrawn()) v->Vehicle::UpdateViewport(true);
 				continue;
 			}
 		}
@@ -3732,7 +3732,7 @@ static void ChangeTrainDirRandomly(Train *v)
 
 	do {
 		/* We don't need to twist around vehicles if they're not visible */
-		if (!(v->vehstatus & VS_HIDDEN)) {
+		if (v->IsDrawn()) {
 			v->direction = ChangeDir(v->direction, delta[GB(Random(), 0, 2)]);
 			v->UpdateDeltaXY(v->direction);
 			v->cur_image = v->GetImage(v->direction, EIT_ON_MAP);
@@ -3756,7 +3756,7 @@ static bool HandleCrashedTrain(Train *v)
 {
 	int state = ++v->crash_anim_pos;
 
-	if (state == 4 && !(v->vehstatus & VS_HIDDEN)) {
+	if (state == 4 && v->IsDrawn()) {
 		CreateEffectVehicleRel(v, 4, 4, 8, EV_EXPLOSION_LARGE);
 	}
 
@@ -4087,7 +4087,7 @@ static bool TrainLocoHandler(Train *v, bool mode)
 	}
 
 	for (Train *u = v; u != NULL; u = u->Next()) {
-		if ((u->vehstatus & VS_HIDDEN) != 0) continue;
+		if (!u->IsDrawn()) continue;
 
 		u->UpdateViewport(false, false);
 	}
