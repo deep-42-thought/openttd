@@ -850,7 +850,7 @@ STR_NEWS_PLANE_USES_TOO_SHORT_RUNWAY                            :{WHITE}{VEHICLE
 STR_NEWS_VEHICLE_IS_GETTING_OLD                                 :{WHITE}{VEHICLE} : 차량이 낡았습니다.
 STR_NEWS_VEHICLE_IS_GETTING_VERY_OLD                            :{WHITE}{VEHICLE} : 차량이 매우 낡았습니다.
 STR_NEWS_VEHICLE_IS_GETTING_VERY_OLD_AND                        :{WHITE}{VEHICLE} : 차량이 매우 낡아 교체가 시급합니다
-STR_NEWS_TRAIN_IS_STUCK                                         :{WHITE}{VEHICLE} : 다음 목적지로의 경로를 찾을 수 없습니다.
+STR_NEWS_TRAIN_IS_STUCK                                         :{WHITE}{VEHICLE} : 다음 목적지로 가는 경로를 찾을 수 없습니다.
 STR_NEWS_VEHICLE_IS_LOST                                        :{WHITE}{VEHICLE} : 아직 다음 목적지에 도착하지 못했습니다.
 STR_NEWS_VEHICLE_IS_UNPROFITABLE                                :{WHITE}{VEHICLE}의 작년 수익이 {CURRENCY_LONG} 입니다.
 STR_NEWS_AIRCRAFT_DEST_TOO_FAR                                  :{WHITE}거리가 너무 멀어서 {VEHICLE}이 다음 목적지에 도착할 수 없습니다
@@ -2190,7 +2190,7 @@ STR_NETWORK_MESSAGE_CLIENT_COMPANY_JOIN                         :*** {STRING} �
 STR_NETWORK_MESSAGE_CLIENT_COMPANY_SPECTATE                     :*** {STRING} 님이 관전을 시작하셨습니다.
 STR_NETWORK_MESSAGE_CLIENT_COMPANY_NEW                          :*** {STRING} 님이 새로운 회사(({2:NUM}번)를 창설하셨습니다.
 STR_NETWORK_MESSAGE_CLIENT_LEFT                                 :*** {STRING} 님이 퇴장하셨습니다. (사유: {2:STRING})
-STR_NETWORK_MESSAGE_NAME_CHANGE                                 :*** {STRING} 님이 이름을 {STRING}(으)로 바꿨습니다
+STR_NETWORK_MESSAGE_NAME_CHANGE                                 :*** {STRING} 님의 이름이 {STRING}(으)로 바뀌었습니다.
 STR_NETWORK_MESSAGE_GIVE_MONEY                                  :*** {STRING} 님이 당신에게 {2:CURRENCY_LONG}만큼의 돈을 보내셨습니다.
 STR_NETWORK_MESSAGE_GAVE_MONEY_AWAY                             :*** {1:STRING} 님에게 {2:CURRENCY_LONG}만큼의 돈을 보냈습니다.
 STR_NETWORK_MESSAGE_SERVER_SHUTDOWN                             :{WHITE}서버가 게임을 종료하였습니다.
@@ -2563,7 +2563,7 @@ STR_INDUSTRY_CARGOES_CUSTOMERS                                  :{WHITE}소비 �
 STR_INDUSTRY_CARGOES_HOUSES                                     :{WHITE}도시 가구
 STR_INDUSTRY_CARGOES_INDUSTRY_TOOLTIP                           :{BLACK}이 산업시설의 공급자와 고객을 보려면 클릭하세요.
 STR_INDUSTRY_CARGOES_CARGO_TOOLTIP                              :{BLACK}{STRING}{}이 화물의 공급자와 고객을 보려면 클릭하세요.
-STR_INDUSTRY_DISPLAY_CHAIN                                      :{BLACK}산업망 표시
+STR_INDUSTRY_DISPLAY_CHAIN                                      :{BLACK}산업시설 연계도 보기
 STR_INDUSTRY_DISPLAY_CHAIN_TOOLTIP                              :{BLACK}이 산업시설에서 생산/소비하는 화물을 보여줍니다.
 STR_INDUSTRY_CARGOES_NOTIFY_SMALLMAP                            :{BLACK}지도에 표시
 STR_INDUSTRY_CARGOES_NOTIFY_SMALLMAP_TOOLTIP                    :{BLACK}위 산업망에 표시된 산업을 소형지도에서 볼 수 있게 합니다.

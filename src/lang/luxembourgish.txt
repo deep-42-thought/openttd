@@ -33,7 +33,7 @@ STR_CARGO_PLURAL_MAIL                                           :Post
 STR_CARGO_PLURAL_OIL                                            :Ueleg
 STR_CARGO_PLURAL_LIVESTOCK                                      :Véi
 STR_CARGO_PLURAL_GOODS                                          :Wueren
-STR_CARGO_PLURAL_GRAIN                                          :Kaar
+STR_CARGO_PLURAL_GRAIN                                          :Kar
 STR_CARGO_PLURAL_WOOD                                           :Holz
 STR_CARGO_PLURAL_IRON_ORE                                       :Eisenäerz
 STR_CARGO_PLURAL_STEEL                                          :Stol
@@ -67,7 +67,7 @@ STR_CARGO_SINGULAR_MAIL                                         :Post
 STR_CARGO_SINGULAR_OIL                                          :Ueleg
 STR_CARGO_SINGULAR_LIVESTOCK                                    :Véi
 STR_CARGO_SINGULAR_GOODS                                        :Wueren
-STR_CARGO_SINGULAR_GRAIN                                        :Kaar
+STR_CARGO_SINGULAR_GRAIN                                        :Kar
 STR_CARGO_SINGULAR_WOOD                                         :Holz
 STR_CARGO_SINGULAR_IRON_ORE                                     :Eisenäerz
 STR_CARGO_SINGULAR_STEEL                                        :Stol
@@ -101,7 +101,7 @@ STR_QUANTITY_MAIL                                               :{COMMA}{NBSP}Po
 STR_QUANTITY_OIL                                                :{VOLUME_LONG} Ueleg
 STR_QUANTITY_LIVESTOCK                                          :{COMMA}{NBSP}Eenheet{P "" en} Véi
 STR_QUANTITY_GOODS                                              :{COMMA}{NBSP}Wuerekëscht{P "" en}
-STR_QUANTITY_GRAIN                                              :{WEIGHT_LONG} Kaar
+STR_QUANTITY_GRAIN                                              :{WEIGHT_LONG} Kar
 STR_QUANTITY_WOOD                                               :{WEIGHT_LONG} Holz
 STR_QUANTITY_IRON_ORE                                           :{WEIGHT_LONG} Eisenäerz
 STR_QUANTITY_STEEL                                              :{WEIGHT_LONG} Stol
@@ -569,7 +569,7 @@ STR_GRAPH_X_LABEL_MONTH_YEAR                                    :{TINY_FONT}{STR
 STR_GRAPH_Y_LABEL                                               :{TINY_FONT}{STRING}
 STR_GRAPH_Y_LABEL_NUMBER                                        :{TINY_FONT}{COMMA}
 
-STR_GRAPH_OPERATING_PROFIT_CAPTION                              :{WHITE}Grafik: Betriibsgewënn
+STR_GRAPH_OPERATING_PROFIT_CAPTION                              :{WHITE}Grafik: Betribsgewënn
 STR_GRAPH_INCOME_CAPTION                                        :{WHITE}Grafik: Akommes
 STR_GRAPH_CARGO_DELIVERED_CAPTION                               :{WHITE}Eenheeten vun Luedung geliwwert
 STR_GRAPH_COMPANY_PERFORMANCE_RATINGS_CAPTION                   :{WHITE}Firmen Performancebewäertung (max Bewäertung=1000)
@@ -1480,7 +1480,7 @@ STR_CONFIG_SETTING_NOSERVICE                                    :Revisiounen aus
 STR_CONFIG_SETTING_NOSERVICE_HELPTEXT                           :Wann ugeschalt, ginn Gefierer net an d'Revisioun geschéckt, wann se keng Pann kënnen kréien
 STR_CONFIG_SETTING_WAGONSPEEDLIMITS                             :Geschwindegkeetsbegrenzungen fir Waggonen: {STRING}
 STR_CONFIG_SETTING_WAGONSPEEDLIMITS_HELPTEXT                    :Wann ugeschalt, benotz och Geschwindegkeetslimitatiounen fir Waggonen fir d'maximal Geschwindegkeet vun engem Zuch ze definéiren
-STR_CONFIG_SETTING_DISABLE_ELRAILS                              :Elecktreschschinnen ausschalten: {STRING}
+STR_CONFIG_SETTING_DISABLE_ELRAILS                              :Elektreschschinnen ausschalten: {STRING}
 STR_CONFIG_SETTING_DISABLE_ELRAILS_HELPTEXT                     :Wann dës Astellung ugeschalt ass, ginn keng elektresch Schinnen gebrauch fir mat elektreschen Zich ze fueren
 
 STR_CONFIG_SETTING_NEWS_ARRIVAL_FIRST_VEHICLE_OWN               :Ukonft vum éischten Gefier op enger Spillerstatioun: {STRING}
@@ -1755,7 +1755,7 @@ STR_INTRO_TOOLTIP_MULTIPLAYER                                   :{BLACK}Start en
 STR_INTRO_TOOLTIP_TEMPERATE                                     :{BLACK}Wielt de Landschaftsstil 'temperéiert'
 STR_INTRO_TOOLTIP_SUB_ARCTIC_LANDSCAPE                          :{BLACK}Wielt de Landschaftsstil 'sub-arktësch'
 STR_INTRO_TOOLTIP_SUB_TROPICAL_LANDSCAPE                        :{BLACK}Wielt de Landschaftsstil 'sub-tropësch'
-STR_INTRO_TOOLTIP_TOYLAND_LANDSCAPE                             :{BLACK}Wielt de Landschaftsstil 'Spillsaachenland'
+STR_INTRO_TOOLTIP_TOYLAND_LANDSCAPE                             :{BLACK}Wielt de Landschaftsstil 'Spillsaacheland'
 
 STR_INTRO_TOOLTIP_GAME_OPTIONS                                  :{BLACK}Spilloptiounen
 STR_INTRO_TOOLTIP_HIGHSCORE                                     :{BLACK}Beschtenlëscht uweisen
@@ -1804,7 +1804,7 @@ STR_CHEAT_EDIT_MAX_HL_QUERY_CAPT                                :{WHITE}Änner d
 STR_CHEAT_SWITCH_CLIMATE_TEMPERATE_LANDSCAPE                    :Gemässegt Klima Landschaft
 STR_CHEAT_SWITCH_CLIMATE_SUB_ARCTIC_LANDSCAPE                   :Sub-Arktësch Landschaft
 STR_CHEAT_SWITCH_CLIMATE_SUB_TROPICAL_LANDSCAPE                 :Sub-Tropësch Landschaft
-STR_CHEAT_SWITCH_CLIMATE_TOYLAND_LANDSCAPE                      :Spillland Landschaft
+STR_CHEAT_SWITCH_CLIMATE_TOYLAND_LANDSCAPE                      :Spillsaacheland Landschaft
 STR_CHEAT_CHANGE_DATE                                           :{LTBLUE}Datum wiesselen: {ORANGE} {DATE_SHORT}
 STR_CHEAT_CHANGE_DATE_QUERY_CAPT                                :{WHITE}Wiessel d'aktuellt Joer
 STR_CHEAT_SETUP_PROD                                            :{LTBLUE}Erlaabt änneren vun de Produktiounswäerter: {ORANGE}{STRING}
@@ -1831,7 +1831,7 @@ STR_LIVERY_DMU                                                  :DMU
 STR_LIVERY_EMU                                                  :EMU
 STR_LIVERY_PASSENGER_WAGON_STEAM                                :Passagéierwaggon (Damp)
 STR_LIVERY_PASSENGER_WAGON_DIESEL                               :Passagéierwaggon (Diesel)
-STR_LIVERY_PASSENGER_WAGON_ELECTRIC                             :Passagéierwaggon (Elektrësch)
+STR_LIVERY_PASSENGER_WAGON_ELECTRIC                             :Passagéierwaggon (Elektresch)
 STR_LIVERY_PASSENGER_WAGON_MONORAIL                             :Passagéierwaggon (Monorail)
 STR_LIVERY_PASSENGER_WAGON_MAGLEV                               :Passagéierwaggon (Magnéitbahn)
 STR_LIVERY_FREIGHT_WAGON                                        :Gidderwaggon
@@ -2363,12 +2363,12 @@ STR_BUILD_SIGNAL_SEMAPHORE_EXIT_TOOLTIP                         :{BLACK}Ausgangs
 STR_BUILD_SIGNAL_SEMAPHORE_COMBO_TOOLTIP                        :{BLACK}Combo-Signal (Diks){}En Combo-Signal agéiert wéi en Agangs- an wéi en Ausgangs-Signal. Dëst erlaabt engem vill "Beem" vun Pre-Signaler ze bauen
 STR_BUILD_SIGNAL_SEMAPHORE_PBS_TOOLTIP                          :{BLACK}Wee-Signal (Diks){}E Wee-Signal erlaabt méi wéi engem Zuch an en Block ze fueren zur selweschter Zäit, wann den Zuch en Wee op en sécheren Stop-Punkt kann reservéiren. Standard Wee-Signaler kënne vun béide Säiten duerchfuer ginn
 STR_BUILD_SIGNAL_SEMAPHORE_PBS_OWAY_TOOLTIP                     :{BLACK}Einbahn-Wee-Signal (Diks){}E Wee-Signal erlaabt méi wéi engem Zuch an en Block ze fueren zur selweschter Zäit, wann den Zuch en Wee op en sécheren Stop-Punkt kann reservéiren. Einbahn-Wee-Signaler kënnen net de falschen Wee duerchfuer ginn
-STR_BUILD_SIGNAL_ELECTRIC_NORM_TOOLTIP                          :{BLACK}Block Signal (electric){}Dëst ass en Basis-Signal, mat dem een een Zuch an engem selwechten Block zur selwechter Zäit erlaabt
-STR_BUILD_SIGNAL_ELECTRIC_ENTRY_TOOLTIP                         :{BLACK}Agangs-Signal (electric){}Gréng soulaang een oder méi gréng Ausgangssignaler vum nächsten Streckenabschnitt kommen. Anescht ass et roud
-STR_BUILD_SIGNAL_ELECTRIC_EXIT_TOOLTIP                          :{BLACK}Ausgangs-Signal (electric){}Verhält sech wéi en Block-Signal mee gëtt gebraucht fir déi korrekt Faarf vun den Agangs- an Combo Pre-Signaler ze setzen
-STR_BUILD_SIGNAL_ELECTRIC_COMBO_TOOLTIP                         :{BLACK}Combo-Signal (electric){}D'Combo-Signal ass einfach en An- an Ausgangssignal. Dëst erlaabt grouss "Beem" Presignaler ze bauen
-STR_BUILD_SIGNAL_ELECTRIC_PBS_TOOLTIP                           :{BLACK}Wee-Signal (electric){}E Wee-Signal erlaabt méi wéi engem Zuch an en Block eranzefueren, wann den Zuch en Wee op en Stop-Punkt reservéiren kann. Standard Wee-Signaler kënnen vun béide Säiten duerchfuer ginn
-STR_BUILD_SIGNAL_ELECTRIC_PBS_OWAY_TOOLTIP                      :{BLACK}Einbahn-Wee-Signal (electric){}En Einbahn-Signal erlaabt méi wéi een Zuch zur selwechter Zäit an engem Block ze sin, wann den Zuch en Wee op en sécheren Stop-Punkt reservéiren kann. Einbahn-Signaler kënnen net vun der falscher Säit duerchfuer ginn
+STR_BUILD_SIGNAL_ELECTRIC_NORM_TOOLTIP                          :{BLACK}Block Signal (Elektresch){}Dëst ass en Basis-Signal, mat dem een een Zuch an engem selwechten Block zur selwechter Zäit erlaabt
+STR_BUILD_SIGNAL_ELECTRIC_ENTRY_TOOLTIP                         :{BLACK}Agangs-Signal (Elektresch){}Gréng soulaang een oder méi gréng Ausgangssignaler vum nächsten Streckenabschnitt kommen. Anescht ass et roud
+STR_BUILD_SIGNAL_ELECTRIC_EXIT_TOOLTIP                          :{BLACK}Ausgangs-Signal (Elektresch){}Verhält sech wéi en Block-Signal mee gëtt gebraucht fir déi korrekt Faarf vun den Agangs- an Combo Pre-Signaler ze setzen
+STR_BUILD_SIGNAL_ELECTRIC_COMBO_TOOLTIP                         :{BLACK}Combo-Signal (Elektresch){}D'Combo-Signal ass einfach en An- an Ausgangssignal. Dëst erlaabt grouss "Beem" Presignaler ze bauen
+STR_BUILD_SIGNAL_ELECTRIC_PBS_TOOLTIP                           :{BLACK}Wee-Signal (Elektresch){}E Wee-Signal erlaabt méi wéi engem Zuch an en Block eranzefueren, wann den Zuch en Wee op en Stop-Punkt reservéiren kann. Standard Wee-Signaler kënnen vun béide Säiten duerchfuer ginn
+STR_BUILD_SIGNAL_ELECTRIC_PBS_OWAY_TOOLTIP                      :{BLACK}Einbahn-Wee-Signal (Elektresch){}En Einbahn-Signal erlaabt méi wéi een Zuch zur selwechter Zäit an engem Block ze sin, wann den Zuch en Wee op en sécheren Stop-Punkt reservéiren kann. Einbahn-Signaler kënnen net vun der falscher Säit duerchfuer ginn
 STR_BUILD_SIGNAL_CONVERT_TOOLTIP                                :{BLACK}Signal konvertéiren{}Wann gewielt, gëtt en geklickten Signal an dat gewielten Signal konvertéiert, Ctrl+Klick wiesselt tëscht de Varianten. Shift weist ongeféier Konvertéirungskäschten
 STR_BUILD_SIGNAL_DRAG_SIGNALS_DENSITY_TOOLTIP                   :{BLACK}Signaldensitéit
 STR_BUILD_SIGNAL_DRAG_SIGNALS_DENSITY_DECREASE_TOOLTIP          :{BLACK}Setzt Signaldensitéit rof
@@ -3382,7 +3382,7 @@ STR_PURCHASE_INFO_SPEED_POWER                                   :{BLACK}Geschw.:
 STR_PURCHASE_INFO_SPEED                                         :{BLACK}Geschw.: {GOLD}{VELOCITY}
 STR_PURCHASE_INFO_SPEED_OCEAN                                   :{BLACK}Geschwindegkeet um Ozean: {GOLD}{VELOCITY}
 STR_PURCHASE_INFO_SPEED_CANAL                                   :{BLACK}Geschwindegkeet um Kanal/Floss: {GOLD}{VELOCITY}
-STR_PURCHASE_INFO_RUNNINGCOST                                   :{BLACK}Betriibskäschtent: {GOLD}{CURRENCY_LONG}/Jr
+STR_PURCHASE_INFO_RUNNINGCOST                                   :{BLACK}Betribskäschten: {GOLD}{CURRENCY_LONG}/Jr
 STR_PURCHASE_INFO_CAPACITY                                      :{BLACK}Kapazitéit: {GOLD}{CARGO_LONG} {STRING}
 STR_PURCHASE_INFO_REFITTABLE                                    :(ëmbaubar)
 STR_PURCHASE_INFO_DESIGNED_LIFE                                 :{BLACK}Designt: {GOLD}{NUM}{BLACK} Liewenszäit: {GOLD}{COMMA} Joer
@@ -3528,10 +3528,10 @@ STR_ENGINE_PREVIEW_SHIP                                         :Schëff
 STR_ENGINE_PREVIEW_MONORAIL_LOCOMOTIVE                          :Monorail Lokomotiv
 STR_ENGINE_PREVIEW_MAGLEV_LOCOMOTIVE                            :Magnéitbunnlokomotiv
 
-STR_ENGINE_PREVIEW_COST_WEIGHT_SPEED_POWER                      :{BLACK}Käschten: {CURRENCY_LONG} Gewiicht: {WEIGHT_SHORT}{}Geschwindegkeet: {VELOCITY}  Kraaft: {POWER}{}Betriibskäschten {CURRENCY_LONG}/joër{}Kapazitéit: {CARGO_LONG}
+STR_ENGINE_PREVIEW_COST_WEIGHT_SPEED_POWER                      :{BLACK}Käschten: {CURRENCY_LONG} Gewiicht: {WEIGHT_SHORT}{}Geschwindegkeet: {VELOCITY}  Kraaft: {POWER}{}Betribskäschten {CURRENCY_LONG}/Joer{}Kapazitéit: {CARGO_LONG}
 STR_ENGINE_PREVIEW_COST_WEIGHT_SPEED_POWER_MAX_TE               :{BLACK}Käschten: {CURRENCY_LONG} Gewicht: {WEIGHT_SHORT}{}Geschw.: {VELOCITY}  Kraaft: {POWER}  Max. T.E.: {6:FORCE}{}Betriebskäschten: {4:CURRENCY_LONG}/Jr{}Kapazitéit: {5:CARGO_LONG}
-STR_ENGINE_PREVIEW_COST_MAX_SPEED_CAPACITY_CAPACITY_RUNCOST     :{BLACK}Käschten: {CURRENCY_LONG} Max. Geschwindegkeet: {VELOCITY}{}Kapazitéit: {CARGO_LONG}, {CARGO_LONG}{}Betriibskäschten {CURRENCY_LONG}/Joer
-STR_ENGINE_PREVIEW_COST_MAX_SPEED_CAPACITY_RUNCOST              :{BLACK}Käschten: {CURRENCY_LONG} Max. Geschwindegkeet: {VELOCITY}{}Kapazitéit: {CARGO_LONG}{}Betriibskäschten: {CURRENCY_LONG}/Joer
+STR_ENGINE_PREVIEW_COST_MAX_SPEED_CAPACITY_CAPACITY_RUNCOST     :{BLACK}Käschten: {CURRENCY_LONG} Max. Geschwindegkeet: {VELOCITY}{}Kapazitéit: {CARGO_LONG}, {CARGO_LONG}{}Betribskäschten {CURRENCY_LONG}/Joer
+STR_ENGINE_PREVIEW_COST_MAX_SPEED_CAPACITY_RUNCOST              :{BLACK}Käschten: {CURRENCY_LONG} Max. Geschwindegkeet: {VELOCITY}{}Kapazitéit: {CARGO_LONG}{}Betribskäschten: {CURRENCY_LONG}/Joer
 STR_ENGINE_PREVIEW_COST_MAX_SPEED_RANGE_CAPACITY_CAPACITY_RUNCOST:{BLACK}Käschten: {CURRENCY_LONG} Max. Geschw.: {VELOCITY} Distanz: {COMMA} Felder{}Kapazitéit: {CARGO_LONG}, {CARGO_LONG}{}Betribskäschten: {CURRENCY_LONG}/Jr
 STR_ENGINE_PREVIEW_COST_MAX_SPEED_RANGE_CAPACITY_RUNCOST        :{BLACK}Käschten: {CURRENCY_LONG} Max. Geschw.: {VELOCITY} Distanz: {COMMA} Felder{}Kapazitéit: {CARGO_LONG}{}Betribskäschten: {CURRENCY_LONG}/Jr
 
@@ -3650,7 +3650,7 @@ STR_VEHICLE_DETAILS_ROAD_VEHICLE_RENAME                         :{BLACK}Stroosse
 STR_VEHICLE_DETAILS_SHIP_RENAME                                 :{BLACK}Schëff benennen
 STR_VEHICLE_DETAILS_AIRCRAFT_RENAME                             :{BLACK}Fliger benennen
 
-STR_VEHICLE_INFO_AGE_RUNNING_COST_YR                            :{BLACK}Alter: {LTBLUE}{STRING}{BLACK}   Betriibskäschten: {LTBLUE}{CURRENCY_LONG}/Joer
+STR_VEHICLE_INFO_AGE_RUNNING_COST_YR                            :{BLACK}Alter: {LTBLUE}{STRING}{BLACK}   Betribskäschten: {LTBLUE}{CURRENCY_LONG}/Joer
 # The next two need to stay in this order
 STR_VEHICLE_INFO_AGE                                            :{COMMA} Joer ({COMMA})
 STR_VEHICLE_INFO_AGE_RED                                        :{RED}{COMMA} Joer ({COMMA})
@@ -4594,7 +4594,7 @@ STR_SV_STNAME_FALLBACK                                          :{STRING} Statio
 
 ##id 0x8000
 # Vehicle names
-STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_KIRBY_PAUL_TANK_STEAM        :Collet Pannier Tank (Damp)
+STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_KIRBY_PAUL_TANK_STEAM        :Kirby Paul Tank (Damp)
 STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_MJS_250_DIESEL               :MJS 250 (Diesel)
 STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_PLODDYPHUT_CHOO_CHOO         :Ploddyphut Chu-Chu
 STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_POWERNAUT_CHOO_CHOO          :Powernaut Chu-Chu
@@ -4602,12 +4602,12 @@ STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_MIGHTYMOVER_CHOO_CHOO        :MightyMover Chu
 STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_PLODDYPHUT_DIESEL            :Ploddyphut Diesel
 STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_POWERNAUT_DIESEL             :Powernaut Diesel
 STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_WILLS_2_8_0_STEAM            :Wills 2-8-0 (Damp)
-STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_CHANEY_JUBILEE_STEAM         :Stanier 'Jubilee' (Damp)
+STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_CHANEY_JUBILEE_STEAM         :Chaney 'Jubilee' (Damp)
 STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_GINZU_A4_STEAM               :Gresley 'A4' (Damp)
 STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_SH_8P_STEAM                  :BR '8P' (Damp)
-STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_MANLEY_MOREL_DMU_DIESEL      :Metro Cammell DMU (Diesel)
+STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_MANLEY_MOREL_DMU_DIESEL      :Manley-Morel DMU (Diesel)
 STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_DASH_DIESEL                  :'Sprinter' (Diesel)
-STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_SH_HENDRY_25_DIESEL          :BR/Sulzer '25' (Diesel)
+STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_SH_HENDRY_25_DIESEL          :SH/Hendry '25' (Diesel)
 STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_UU_37_DIESEL                 :EE '37' (Diesel)
 STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_FLOSS_47_DIESEL              :Brush '47' (Diesel)
 STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_CS_4000_DIESEL               :CS 4000 (Diesel)
@@ -4617,17 +4617,17 @@ STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_KELLING_3100_DIESEL          :Kelling 3100 (D
 STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_TURNER_TURBO_DIESEL          :Turner Turbo (Diesel)
 STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_MJS_1000_DIESEL              :MJS 1000 (Diesel)
 STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_SH_125_DIESEL                :BR 'IC125' (Diesel)
-STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_SH_30_ELECTRIC               :BR '30' (Elektrësch)
-STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_SH_40_ELECTRIC               :BR '40' (Elektrësch)
-STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_T_I_M_ELECTRIC               :'T.G.V.' (Elektrësch)
-STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_ASIASTAR_ELECTRIC            :'EuroStar' (Elektrësch)
+STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_SH_30_ELECTRIC               :BR '30' (Elektresch)
+STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_SH_40_ELECTRIC               :BR '40' (Elektresch)
+STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_T_I_M_ELECTRIC               :'T.G.V.' (Elektresch)
+STR_VEHICLE_NAME_TRAIN_ENGINE_RAIL_ASIASTAR_ELECTRIC            :'EuroStar' (Elektresch)
 STR_VEHICLE_NAME_TRAIN_WAGON_RAIL_PASSENGER_CAR                 :Passagéierwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_RAIL_MAIL_VAN                      :Postwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_RAIL_COAL_CAR                      :Kuelewaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_RAIL_OIL_TANKER                    :Uelegwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_RAIL_LIVESTOCK_VAN                 :Véiwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_RAIL_GOODS_VAN                     :Wuerewaggon
-STR_VEHICLE_NAME_TRAIN_WAGON_RAIL_GRAIN_HOPPER                  :Kaarwaggon
+STR_VEHICLE_NAME_TRAIN_WAGON_RAIL_GRAIN_HOPPER                  :Karwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_RAIL_WOOD_TRUCK                    :Holzwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_RAIL_IRON_ORE_HOPPER               :Eisenäerzwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_RAIL_STEEL_TRUCK                   :Stolwaggon
@@ -4648,8 +4648,8 @@ STR_VEHICLE_NAME_TRAIN_WAGON_RAIL_TOY_VAN                       :Spillsaachenwag
 STR_VEHICLE_NAME_TRAIN_WAGON_RAIL_BATTERY_TRUCK                 :Batterienwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_RAIL_FIZZY_DRINK_TRUCK             :Spruddelgedrénks Waggon
 STR_VEHICLE_NAME_TRAIN_WAGON_RAIL_PLASTIC_TRUCK                 :Plastikwaggon
-STR_VEHICLE_NAME_TRAIN_ENGINE_MONORAIL_X2001_ELECTRIC           :'X2001' (Elektrësch)
-STR_VEHICLE_NAME_TRAIN_ENGINE_MONORAIL_MILLENNIUM_Z1_ELECTRIC   :'Millennium Z1' (Elektrësch)
+STR_VEHICLE_NAME_TRAIN_ENGINE_MONORAIL_X2001_ELECTRIC           :'X2001' (Elektresch)
+STR_VEHICLE_NAME_TRAIN_ENGINE_MONORAIL_MILLENNIUM_Z1_ELECTRIC   :'Millennium Z1' (Elektresch)
 STR_VEHICLE_NAME_TRAIN_ENGINE_MONORAIL_WIZZOWOW_Z99             :Wizzowow Z99
 STR_VEHICLE_NAME_TRAIN_WAGON_MONORAIL_PASSENGER_CAR             :Passagéierwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_MONORAIL_MAIL_VAN                  :Postwaggon
@@ -4657,7 +4657,7 @@ STR_VEHICLE_NAME_TRAIN_WAGON_MONORAIL_COAL_CAR                  :Kuelenwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_MONORAIL_OIL_TANKER                :Uelegwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_MONORAIL_LIVESTOCK_VAN             :Véiwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_MONORAIL_GOODS_VAN                 :Wuerewaggon
-STR_VEHICLE_NAME_TRAIN_WAGON_MONORAIL_GRAIN_HOPPER              :Kaarwaggon
+STR_VEHICLE_NAME_TRAIN_WAGON_MONORAIL_GRAIN_HOPPER              :Karwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_MONORAIL_WOOD_TRUCK                :Holzwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_MONORAIL_IRON_ORE_HOPPER           :Eisenäerzwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_MONORAIL_STEEL_TRUCK               :Stolwaggon
@@ -4678,10 +4678,10 @@ STR_VEHICLE_NAME_TRAIN_WAGON_MONORAIL_TOY_VAN                   :Spillsaachenwag
 STR_VEHICLE_NAME_TRAIN_WAGON_MONORAIL_BATTERY_TRUCK             :Batteriewaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_MONORAIL_FIZZY_DRINK_TRUCK         :Spruddelgedrénkswaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_MONORAIL_PLASTIC_TRUCK             :Plastikwaggon
-STR_VEHICLE_NAME_TRAIN_ENGINE_MAGLEV_LEV1_LEVIATHAN_ELECTRIC    :Lev1 'Leviathan' (Elektrësch)
-STR_VEHICLE_NAME_TRAIN_ENGINE_MAGLEV_LEV2_CYCLOPS_ELECTRIC      :Lev2 'Cyclops' (Elektrësch)
-STR_VEHICLE_NAME_TRAIN_ENGINE_MAGLEV_LEV3_PEGASUS_ELECTRIC      :Lev3 'Pegasus' (Elektrësch)
-STR_VEHICLE_NAME_TRAIN_ENGINE_MAGLEV_LEV4_CHIMAERA_ELECTRIC     :Lev4 'Chimaera' (Elektrësch)
+STR_VEHICLE_NAME_TRAIN_ENGINE_MAGLEV_LEV1_LEVIATHAN_ELECTRIC    :Lev1 'Leviathan' (Elektresch)
+STR_VEHICLE_NAME_TRAIN_ENGINE_MAGLEV_LEV2_CYCLOPS_ELECTRIC      :Lev2 'Cyclops' (Elektresch)
+STR_VEHICLE_NAME_TRAIN_ENGINE_MAGLEV_LEV3_PEGASUS_ELECTRIC      :Lev3 'Pegasus' (Elektresch)
+STR_VEHICLE_NAME_TRAIN_ENGINE_MAGLEV_LEV4_CHIMAERA_ELECTRIC     :Lev4 'Chimaera' (Elektresch)
 STR_VEHICLE_NAME_TRAIN_ENGINE_MAGLEV_WIZZOWOW_ROCKETEER         :Wizzowow Rocketeer
 STR_VEHICLE_NAME_TRAIN_WAGON_MAGLEV_PASSENGER_CAR               :Passagéierwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_MAGLEV_MAIL_VAN                    :Postwaggon
@@ -4689,7 +4689,7 @@ STR_VEHICLE_NAME_TRAIN_WAGON_MAGLEV_COAL_CAR                    :Kuelewaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_MAGLEV_OIL_TANKER                  :Uelegwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_MAGLEV_LIVESTOCK_VAN               :Véiwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_MAGLEV_GOODS_VAN                   :Wuerewaggon
-STR_VEHICLE_NAME_TRAIN_WAGON_MAGLEV_GRAIN_HOPPER                :Kaarwaggon
+STR_VEHICLE_NAME_TRAIN_WAGON_MAGLEV_GRAIN_HOPPER                :Karwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_MAGLEV_WOOD_TRUCK                  :Holzwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_MAGLEV_IRON_ORE_HOPPER             :Eisenäerzwaggon
 STR_VEHICLE_NAME_TRAIN_WAGON_MAGLEV_STEEL_TRUCK                 :Stolwaggon
@@ -4735,9 +4735,9 @@ STR_VEHICLE_NAME_ROAD_VEHICLE_FOSTER_LIVESTOCK_VAN              :Foster Véitran
 STR_VEHICLE_NAME_ROAD_VEHICLE_BALOGH_GOODS_TRUCK                :Balogh Wuerecamion
 STR_VEHICLE_NAME_ROAD_VEHICLE_CRAIGHEAD_GOODS_TRUCK             :Craighead Wuerecamion
 STR_VEHICLE_NAME_ROAD_VEHICLE_GOSS_GOODS_TRUCK                  :Goss Wuerecamion
-STR_VEHICLE_NAME_ROAD_VEHICLE_HEREFORD_GRAIN_TRUCK              :Hereford Kaarcamion
-STR_VEHICLE_NAME_ROAD_VEHICLE_THOMAS_GRAIN_TRUCK                :Thomas Kaarcamion
-STR_VEHICLE_NAME_ROAD_VEHICLE_GOSS_GRAIN_TRUCK                  :Goss Kaarcamion
+STR_VEHICLE_NAME_ROAD_VEHICLE_HEREFORD_GRAIN_TRUCK              :Hereford Karcamion
+STR_VEHICLE_NAME_ROAD_VEHICLE_THOMAS_GRAIN_TRUCK                :Thomas Karcamion
+STR_VEHICLE_NAME_ROAD_VEHICLE_GOSS_GRAIN_TRUCK                  :Goss Karcamion
 STR_VEHICLE_NAME_ROAD_VEHICLE_WITCOMBE_WOOD_TRUCK               :Witcombe Holzcamion
 STR_VEHICLE_NAME_ROAD_VEHICLE_FOSTER_WOOD_TRUCK                 :Foster Holzcamion
 STR_VEHICLE_NAME_ROAD_VEHICLE_MORELAND_WOOD_TRUCK               :Moreland Holzcamion
