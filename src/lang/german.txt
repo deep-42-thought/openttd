@@ -1294,6 +1294,7 @@ STR_CONFIG_SETTING_POPULATION_IN_LABEL                          :Zeige die Einwo
 STR_CONFIG_SETTING_POPULATION_IN_LABEL_HELPTEXT                 :Zeige die Einwohneranzahl neben den Städtenamen auf der Karte an
 STR_CONFIG_SETTING_GRAPH_LINE_THICKNESS                         :Linienstärke in Diagrammen: {STRING}
 STR_CONFIG_SETTING_GRAPH_LINE_THICKNESS_HELPTEXT                :Strichdicke der Linien in Diagrammen. Dünnere Linien sind genauer ablesbar, dickere Linien sind besser sichtbar und erlauben es, Farben leichter zu unterscheiden
+STR_CONFIG_SETTING_FORECAST_DISPLAY                             :{LTBLUE}Angebots- und Bedarfsvorhersage für Station anzeigen: {ORANGE}{STRING}
 
 STR_CONFIG_SETTING_LANDSCAPE                                    :Landschaftstyp: {STRING}
 STR_CONFIG_SETTING_LANDSCAPE_HELPTEXT                           :Landschaftstype definiert grundlegende Spielscenarien in Bezug auf verfügbare Fracht und Wachstumsvoraussetzungen für Städte. NewGRFs und Spielskripte erlauben weitgehendere Kontrolle dieser Parameter

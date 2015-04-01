@@ -1153,6 +1153,8 @@ static char *FormatString(char *buff, const char *str_arg, StringParameters *arg
 
 				const CargoSpec *cs;
 				FOR_ALL_SORTED_CARGOSPECS(cs) {
+					int n;
+
 					if (!HasBit(cmask, cs->Index())) continue;
 
 					if (buff >= last - 2) break; // ',' and ' '
@@ -1166,6 +1168,20 @@ static char *FormatString(char *buff, const char *str_arg, StringParameters *arg
 					}
 
 					buff = GetStringWithArgs(buff, cs->name, args, last, next_substr_case_index, game_script);
+
+					if (args->GetParam(1) != SCC_CARGO_LIST || !_settings_client.gui.forecast_display) {
+						continue;
+					}
+
+					/* Shows only passengers and mails since other cargoes provide no useful value. (all 1) */
+					if (cs->Index() == CT_PASSENGERS || cs->Index() == CT_MAIL) {
+						if (cs->Index() == CT_PASSENGERS) {
+							n = seprintf(buff, last, "(%d)", args->GetParam(2));
+						} else {
+							n = seprintf(buff, last, "(%d)", args->GetParam(3));
+						}
+						buff += n;
+					}
 				}
 
 				/* If first is still true then no cargo is accepted */
