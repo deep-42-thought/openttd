@@ -23,25 +23,84 @@
  */
 TileIndex GetOtherTunnelEnd(TileIndex tile)
 {
+	assert(IsTunnelTile(tile));
+
 	DiagDirection dir = GetTunnelBridgeDirection(tile);
 	TileIndexDiff delta = TileOffsByDiagDir(dir);
-	int z = GetTileZ(tile);
+	uint h = TileHeight(tile);
 
-	dir = ReverseDiagDir(dir);
+	if (dir == DIAGDIR_NE || dir == DIAGDIR_NW) {
+		h--;
+continue_ne_nw:
 	do {
 		tile += delta;
-	} while (
-		!IsTunnelTile(tile) ||
-		GetTunnelBridgeDirection(tile) != dir ||
-		GetTileZ(tile) != z
-	);
+		} while (TileHeight(tile) != h);
+	} else {
+continue_se_sw:
+		tile += delta;
+		do {
+			tile += delta;
+		} while (TileHeight(tile) != h);
+		tile -= delta;
+	}
+
+	if (IsTunnelTile(tile) && GetTunnelBridgeDirection(tile) == ReverseDiagDir(dir)) {
+	} else {
+	/* Handle Chunnels.
+	 * Only look for tunnel when hight level changes.
+	 * And only at sea level.
+	 */
+		assert(h <= 1);
+		(h == 0) ? h = 1 : h = 0;
+		if (dir == DIAGDIR_NE || dir == DIAGDIR_NW) {
+			goto continue_ne_nw;
+		} else {
+			goto continue_se_sw;
+		}
+	}
 
 	return tile;
 }
 
+/**
+ * Is there a Chunnel in the way in the given direction?
+ * Only between height level 0 and 1.
+ * Used to avoid building bridge or tunnel between existing chunnel.
+ * @param tile the tile to search from.
+ * @param dir  the direction to start searching to.
+ * @return true if and only if there is a chunnel.
+ */
+bool IsBetweenChunnelPortals(TileIndex tile, DiagDirection dir)
+{
+	uint h = 0;
+	TileIndexDiff delta = TileOffsByDiagDir(dir);
+	if (GetTileZ(tile) > 0) return false;
+
+	do {
+		if (dir == DIAGDIR_NE || dir == DIAGDIR_NW) {
+			do {
+				tile += delta;
+			if (!IsValidTile(tile)) return false;
+			} while (TileHeight(tile) != h);
+		} else {
+			tile += delta;
+			do {
+				tile += delta;
+			if (!IsValidTile(tile)) return false;
+			} while (TileHeight(tile) != h);
+			tile -= delta;
+		}
+		(h == 0) ? h = 1 : h = 0;
+	} while (!IsTunnelTile(tile));
+
+	if (GetTunnelBridgeDirection(tile) != ReverseDiagDir(dir)) return false;
+
+	return true;
+}
 
 /**
  * Is there a tunnel in the way in the given direction?
+ * Between level 0 and 1 terraforming is allowed. (No search)
  * @param tile the tile to search from.
  * @param z    the 'z' to search on.
  * @param dir  the direction to start searching to.
@@ -49,6 +108,9 @@ TileIndex GetOtherTunnelEnd(TileIndex tile)
  */
 bool IsTunnelInWayDir(TileIndex tile, int z, DiagDirection dir)
 {
+	/* Between level 0 and 1 terraforming is allowed. */
+	if (GetTileZ(tile) <= 1) return false;
+
 	TileIndexDiff delta = TileOffsByDiagDir(dir);
 	int height;
 

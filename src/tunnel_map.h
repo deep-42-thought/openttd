@@ -40,6 +40,7 @@ static inline bool IsTunnelTile(TileIndex t)
 TileIndex GetOtherTunnelEnd(TileIndex);
 bool IsTunnelInWay(TileIndex, int z);
 bool IsTunnelInWayDir(TileIndex tile, int z, DiagDirection dir);
+bool IsBetweenChunnelPortals(TileIndex tile, DiagDirection dir);
 
 /**
  * Makes a road tunnel entrance

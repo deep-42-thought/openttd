@@ -323,6 +323,12 @@ CommandCost CmdBuildBridge(TileIndex end_tile, DoCommandFlag flags, uint32 p1, u
 	if (transport_type == TRANSPORT_WATER && (tileh_start == SLOPE_FLAT || tileh_end == SLOPE_FLAT)) return_cmd_error(STR_ERROR_LAND_SLOPED_IN_WRONG_DIRECTION);
 	if (z_start != z_end) return_cmd_error(STR_ERROR_BRIDGEHEADS_NOT_SAME_HEIGHT);
 
+	/* Don't allow building bridge ramps between chunnel portals. */
+	DiagDirection dir = DiagdirBetweenTiles(tile_start, tile_end);
+	if (IsBetweenChunnelPortals(tile_start, dir)) return_cmd_error(STR_ERROR_ANOTHER_TUNNEL_IN_THE_WAY);
+	if (IsBetweenChunnelPortals(tile_start, ChangeDiagDir(dir, DIAGDIRDIFF_90RIGHT))) return_cmd_error(STR_ERROR_ANOTHER_TUNNEL_IN_THE_WAY);
+	if (IsBetweenChunnelPortals(tile_end, ChangeDiagDir(dir, DIAGDIRDIFF_90RIGHT))) return_cmd_error(STR_ERROR_ANOTHER_TUNNEL_IN_THE_WAY);
+
 	CommandCost cost(EXPENSES_CONSTRUCTION);
 	Owner owner;
 	bool is_new_owner;
@@ -626,6 +632,10 @@ CommandCost CmdBuildTunnel(TileIndex start_tile, DoCommandFlag flags, uint32 p1,
 
 	if (HasTileWaterGround(start_tile)) return_cmd_error(STR_ERROR_CAN_T_BUILD_ON_WATER);
 
+	/* Don't allow building tunnel tiles between chunnel portals. */
+	if (IsBetweenChunnelPortals(start_tile, direction)) return_cmd_error(STR_ERROR_ANOTHER_TUNNEL_IN_THE_WAY);
+	if (IsBetweenChunnelPortals(start_tile, ChangeDiagDir(direction, DIAGDIRDIFF_90RIGHT))) return_cmd_error(STR_ERROR_ANOTHER_TUNNEL_IN_THE_WAY);
+
 	CommandCost ret = DoCommand(start_tile, 0, 0, flags, CMD_LANDSCAPE_CLEAR);
 	if (ret.Failed()) return ret;
 
@@ -650,20 +660,47 @@ CommandCost CmdBuildTunnel(TileIndex start_tile, DoCommandFlag flags, uint32 p1,
 	int tiles = 0;
 	/* Number of tiles at which the cost increase coefficient per tile is halved */
 	int tiles_bump = 25;
+	end_tile += delta;
 
 	CommandCost cost(EXPENSES_CONSTRUCTION);
 	Slope end_tileh;
 	for (;;) {
-		end_tile += delta;
 		if (!IsValidTile(end_tile)) return_cmd_error(STR_ERROR_TUNNEL_THROUGH_MAP_BORDER);
 		end_tileh = GetTileSlope(end_tile, &end_z);
 
-		if (start_z == end_z) break;
+		if (start_z == end_z) {
+			/* Handle chunnels only on sea level */
+			if (end_z != 0)  break;
+
+			/* Test for minimal one water tile. */
+			if (!IsValidTile(end_tile + delta) || !((IsWaterTile(end_tile + delta)) || (IsCoastTile(end_tile + delta)))) break;
+
+			/* Continue until water is passed and suitable endsstop is found. */
+			for (;;) {
+				if (!IsValidTile(end_tile)) break;
+
+				end_tileh = GetTileSlope(end_tile);
+				if(direction == DIAGDIR_NE && (end_tileh & SLOPE_NE) == SLOPE_NE) break;
+				if(direction == DIAGDIR_SE && (end_tileh & SLOPE_SE) == SLOPE_SE) break;
+				if(direction == DIAGDIR_SW && (end_tileh & SLOPE_SW) == SLOPE_SW) break;
+				if(direction == DIAGDIR_NW && (end_tileh & SLOPE_NW) == SLOPE_NW) break;
+
+				end_tile += delta;
+				tiles++;
+				if (tiles == tiles_bump) {
+					tiles_coef++;
+					tiles_bump *= 2;
+				}
+				cost.AddCost(_price[PR_BUILD_TUNNEL]);
+				cost.AddCost(cost.GetCost() >> tiles_coef); // add a multiplier for longer tunnels
+			}
+		}
 
 		if (!_cheats.crossing_tunnels.value && IsTunnelInWayDir(end_tile, start_z, tunnel_in_way_dir)) {
 			return_cmd_error(STR_ERROR_ANOTHER_TUNNEL_IN_THE_WAY);
 		}
 
+		end_tile += delta;
 		tiles++;
 		if (tiles == tiles_bump) {
 			tiles_coef++;
@@ -684,6 +721,9 @@ CommandCost CmdBuildTunnel(TileIndex start_tile, DoCommandFlag flags, uint32 p1,
 	if (tiles > _settings_game.construction.max_tunnel_length) return_cmd_error(STR_ERROR_TUNNEL_TOO_LONG);
 
 	if (HasTileWaterGround(end_tile)) return_cmd_error(STR_ERROR_CAN_T_BUILD_ON_WATER);
+
+	/* Don't allow building tunnels between chunnel portals looking sideways. */
+	if (IsBetweenChunnelPortals(end_tile, ChangeDiagDir(direction, DIAGDIRDIFF_90RIGHT))) return_cmd_error(STR_ERROR_ANOTHER_TUNNEL_IN_THE_WAY);
 
 	/* Clear the tile in any case */
 	ret = DoCommand(end_tile, 0, 0, flags, CMD_LANDSCAPE_CLEAR);
