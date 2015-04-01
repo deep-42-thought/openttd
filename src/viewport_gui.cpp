@@ -16,6 +16,7 @@
 #include "strings_func.h"
 #include "zoom_func.h"
 #include "window_func.h"
+#include "gfx_func.h"
 
 #include "widgets/viewport_widget.h"
 
@@ -47,15 +48,21 @@ static const NWidgetPart _nested_extra_view_port_widgets[] = {
 		EndContainer(),
 	EndContainer(),
 	NWidget(NWID_HORIZONTAL),
+		NWidget(WWT_PUSHTXTBTN, COLOUR_GREY, WID_EV_FOLLOW_CURSOR), SetMinimalSize(22, 22), SetFill(1, 1), SetResize(1, 0), SetDataTip(STR_EXTRA_VIEW_FOLLOW_CURSOR, STR_EXTRA_VIEW_FOLLOW_CURSOR_TT),
+	EndContainer(),
+	NWidget(NWID_HORIZONTAL),
 		NWidget(WWT_PANEL, COLOUR_GREY), SetFill(1, 1), SetResize(1, 0), EndContainer(),
 		NWidget(WWT_RESIZEBOX, COLOUR_GREY),
 	EndContainer(),
 };
 
 class ExtraViewportWindow : public Window {
+		bool follow_cursor;
 public:
 	ExtraViewportWindow(WindowDesc *desc, int window_number, TileIndex tile) : Window(desc)
 	{
+		this->follow_cursor = false;
+
 		this->InitNested(window_number);
 
 		NWidgetViewport *nvp = this->GetWidget<NWidgetViewport>(WID_EV_VIEWPORT);
@@ -117,6 +124,12 @@ public:
 				this->viewport->dest_scrollpos_y =  y + (w->viewport->virtual_height - this->viewport->virtual_height) / 2;
 				break;
 			}
+
+			case WID_EV_FOLLOW_CURSOR:
+				this->follow_cursor ^= true;
+				this->SetWidgetsDisabledState(this->follow_cursor, WID_EV_MAIN_TO_VIEW, WID_EV_VIEW_TO_MAIN, WIDGET_LIST_END);
+				this->SetDirty();
+				break;
 		}
 	}
 
@@ -130,6 +143,9 @@ public:
 
 	virtual void OnScroll(Point delta)
 	{
+		/* do not scroll if following cursor */
+		if (this->follow_cursor) return;
+
 		this->viewport->scrollpos_x += ScaleByZoom(delta.x, this->viewport->zoom);
 		this->viewport->scrollpos_y += ScaleByZoom(delta.y, this->viewport->zoom);
 		this->viewport->dest_scrollpos_x = this->viewport->scrollpos_x;
@@ -154,6 +170,25 @@ public:
 		/* Only handle zoom message if intended for us (msg ZOOM_IN/ZOOM_OUT) */
 		HandleZoomMessage(this, this->viewport, WID_EV_ZOOM_IN, WID_EV_ZOOM_OUT);
 	}
+
+	virtual void OnPaint()
+	{
+		this->SetWidgetLoweredState(WID_EV_FOLLOW_CURSOR, this->follow_cursor);
+		this->DrawWidgets();
+	}
+
+	virtual void OnMouseLoop()
+ 	{
+		if (!this->follow_cursor) return;
+		if (FindWindowFromPt(_cursor.pos.x, _cursor.pos.y) != this)
+		{
+			Point pt = GetTileBelowCursor();
+			if (pt.x > -1 && pt.y > -1)
+			{
+				ScrollWindowTo(pt.x, pt.y, -1, this, true);
+			}
+		}
+ 	}
 };
 
 static WindowDesc _extra_view_port_desc(
