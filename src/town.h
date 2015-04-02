@@ -173,6 +173,40 @@ void ShowTownViewWindow(TownID town);
 void ExpandTown(Town *t);
 
 /**
+ * Return the offset for a given town rating.
+ *
+ * This function returns an offset which can be
+ * added to the STR_CARGO_RATING_APPALLING value to get the
+ * corresponding StringID for the given town rating.
+ *
+ * @param rating The town rating
+ * @return The offset for the given rating
+ */
+static inline StringID OffsetByTownRating(int16 rating)
+{
+	int16 ratings[8] = {
+		RATING_APPALLING,
+		RATING_VERYPOOR,
+		RATING_POOR,
+		RATING_MEDIOCRE,
+		RATING_GOOD,
+		RATING_VERYGOOD,
+		RATING_EXCELLENT,
+		RATING_OUTSTANDING
+	};
+	int offset = 0;
+
+	for (;offset < 7; offset++) {
+
+		if (rating <= ratings[offset]) {
+			break;
+		}
+	}
+	// if offset is 7 its Outstanding as nothing is above it
+	return offset;
+}
+
+/**
  * Action types that a company must ask permission for to a town authority.
  * @see CheckforTownRating
  */

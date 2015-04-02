@@ -1423,6 +1423,7 @@ STR_CONFIG_SETTING_PERSISTENT_BUILDINGTOOLS                     :Keep building t
 STR_CONFIG_SETTING_PERSISTENT_BUILDINGTOOLS_HELPTEXT            :Keep the building tools for bridges, tunnels, etc. open after use
 STR_CONFIG_SETTING_EXPENSES_LAYOUT                              :Group expenses in company finance window: {STRING2}
 STR_CONFIG_SETTING_EXPENSES_LAYOUT_HELPTEXT                     :Define the layout for the company expenses window
+STR_CONFIG_SETTING_TOWNRATING_INDICATOR                         :{LTBLUE}Show town rating indicators: {ORANGE}{STRING1}
 
 STR_CONFIG_SETTING_SOUND_TICKER                                 :News ticker: {STRING2}
 STR_CONFIG_SETTING_SOUND_TICKER_HELPTEXT                        :Play sound for summarised news messages
@@ -2593,6 +2594,12 @@ STR_FUND_INDUSTRY_INDUSTRY_BUILD_COST                           :{BLACK}Cost: {Y
 STR_FUND_INDUSTRY_PROSPECT_NEW_INDUSTRY                         :{BLACK}Prospect
 STR_FUND_INDUSTRY_BUILD_NEW_INDUSTRY                            :{BLACK}Build
 STR_FUND_INDUSTRY_FUND_NEW_INDUSTRY                             :{BLACK}Fund
+
+# Town rating indicators
+STR_TOWN_RATING_INCREASED_TINY                                  :{TINY_FONT}{GREEN}Rating increased to: {STRING}
+STR_TOWN_RATING_INCREASED                                       :{GREEN}Rating increased to: {STRING}
+STR_TOWN_RATING_DECREASED_TINY                                  :{TINY_FONT}{RED}Rating decreased to: {STRING}
+STR_TOWN_RATING_DECREASED                                       :{RED}Rating decreased to: {STRING}
 
 # Industry cargoes window
 STR_INDUSTRY_CARGOES_INDUSTRY_CAPTION                           :{WHITE}Industry chain for {STRING} industry

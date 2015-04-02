@@ -158,6 +158,7 @@ struct GUISettings {
 	bool   scenario_developer;               ///< activate scenario developer: allow modifying NewGRFs in an existing game
 	uint8  settings_restriction_mode;        ///< selected restriction mode in adv. settings GUI. @see RestrictionMode
 	bool   newgrf_show_old_versions;         ///< whether to show old versions in the NewGRF list
+	bool   townrating_indicator;             ///< Whether to show the town rating indicators.
 	uint8  newgrf_default_palette;           ///< default palette to use for NewGRFs without action 14 palette information
 
 	/**

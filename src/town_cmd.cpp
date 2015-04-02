@@ -26,6 +26,7 @@
 #include "newgrf_debug.h"
 #include "newgrf_house.h"
 #include "newgrf_text.h"
+#include "texteff.hpp"
 #include "autoslope.h"
 #include "tunnelbridge_map.h"
 #include "strings_func.h"
@@ -3302,6 +3303,8 @@ void ChangeTownRating(Town *t, int add, int max, DoCommandFlag flags)
 	}
 
 	int rating = GetRating(t);
+	int old_rating = rating;
+
 	if (add < 0) {
 		if (rating > max) {
 			rating += add;
@@ -3320,6 +3323,26 @@ void ChangeTownRating(Town *t, int add, int max, DoCommandFlag flags)
 		t->ratings[_current_company] = rating;
 		t->UpdateVirtCoord();
 		SetWindowDirty(WC_TOWN_AUTHORITY, t->index);
+
+		if (_settings_client.gui.townrating_indicator && _current_company == _local_company) {
+			if (rating != old_rating) { // got a change
+				StringID msg = (rating > old_rating) ? STR_TOWN_RATING_INCREASED : STR_TOWN_RATING_DECREASED;
+				StringID display;
+				StringID old_display;
+				// rating -> string_rating
+				display = STR_CARGO_RATING_APPALLING + OffsetByTownRating(rating);
+				old_display = STR_CARGO_RATING_APPALLING + OffsetByTownRating(old_rating);
+
+				if (display != old_display) { // change in rating, notice it (abundant check?)
+					// place the indicator 1 tile above the town tile results in
+					// showing the indicator above the town name
+					Point pt = RemapCoords2((TileX(t->xy) - 1) * TILE_SIZE - (display - STR_CARGO_RATING_APPALLING) * 7,
+								(TileY(t->xy) - 1) * TILE_SIZE - (display - STR_CARGO_RATING_APPALLING) * 7);
+					SetDParam(0, display);
+					AddTextEffect(msg, pt.x, pt.y, DAY_TICKS, TE_RISING);
+	}
+}
+		}
 	}
 }
 

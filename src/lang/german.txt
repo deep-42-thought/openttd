@@ -1420,6 +1420,7 @@ STR_CONFIG_SETTING_PERSISTENT_BUILDINGTOOLS                     :Belasse Bauwerk
 STR_CONFIG_SETTING_PERSISTENT_BUILDINGTOOLS_HELPTEXT            :Die Bauwerkzeuge für Brücken, Tunnel, etc. nach Benutzung weiter aktiviert lassen
 STR_CONFIG_SETTING_EXPENSES_LAYOUT                              :Zwischensummen für Kategorien bei Firmenausgaben:{STRING}
 STR_CONFIG_SETTING_EXPENSES_LAYOUT_HELPTEXT                     :Lege das Layout für das Fenster mit den Firmenausgaben fest
+STR_CONFIG_SETTING_TOWNRATING_INDICATOR                         :{LTBLUE}Zeige Indikatoren für Bewertung: {ORANGE}{STRING}
 
 STR_CONFIG_SETTING_SOUND_TICKER                                 :Nachrichtenticker: {STRING}
 STR_CONFIG_SETTING_SOUND_TICKER_HELPTEXT                        :Soundeffekte für Kurzfassungen von Nachrichten abspielen (Ticker)
@@ -2559,6 +2560,12 @@ STR_FUND_INDUSTRY_INDUSTRY_BUILD_COST                           :{BLACK}Kosten: 
 STR_FUND_INDUSTRY_PROSPECT_NEW_INDUSTRY                         :{BLACK}Prospektieren
 STR_FUND_INDUSTRY_BUILD_NEW_INDUSTRY                            :{BLACK}Bauen
 STR_FUND_INDUSTRY_FUND_NEW_INDUSTRY                             :{BLACK}Finanzieren
+
+# Town rating indicators
+STR_TOWN_RATING_INCREASED_TINY                                  :{TINY_FONT}{GREEN}Bewertung verbessert zu: {STRING}
+STR_TOWN_RATING_INCREASED                                       :{GREEN}Bewertung verbessert zu: {STRING}
+STR_TOWN_RATING_DECREASED_TINY                                  :{TINY_FONT}{RED}Bewertung verschlechtert zu: {STRING}
+STR_TOWN_RATING_DECREASED                                       :{RED}Bewertung verschlechtert zu: {STRING}
 
 # Industry cargoes window
 STR_INDUSTRY_CARGOES_INDUSTRY_CAPTION                           :{WHITE}Produktionskette für {STRING}
