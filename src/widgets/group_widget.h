@@ -32,6 +32,7 @@ enum GroupListWidgets {
 	WID_GL_DELETE_GROUP,             ///< Delete group button.
 	WID_GL_RENAME_GROUP,             ///< Rename group button.
 	WID_GL_REPLACE_PROTECTION,       ///< Replace protection button.
+	WID_GL_GROUP_INFO,               ///< Label for info about group income.
 };
 
 #endif /* WIDGETS_GROUP_WIDGET_H */

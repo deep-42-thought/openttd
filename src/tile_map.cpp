@@ -112,9 +112,10 @@ static Slope GetTileSlopeGivenHeight(int hnorth, int hwest, int heast, int hsout
  * @param h    If not \c NULL, pointer to storage of z height
  * @return Slope of the tile, except for the HALFTILE part
  */
-Slope GetTileSlope(TileIndex tile, int *h)
+template <bool Tgeneric>
+Slope GetTileSlope(typename TileIndexT<Tgeneric>::T tile, int *h)
 {
-	assert(tile < MapSize());
+	assert(IsValidTileIndex(tile));
 
 	uint x = TileX(tile);
 	uint y = TileY(tile);
@@ -123,10 +124,10 @@ Slope GetTileSlope(TileIndex tile, int *h)
 		return SLOPE_FLAT;
 	}
 
-	int hnorth = TileHeight(tile);                    // Height of the North corner.
-	int hwest  = TileHeight(tile + TileDiffXY(1, 0)); // Height of the West corner.
-	int heast  = TileHeight(tile + TileDiffXY(0, 1)); // Height of the East corner.
-	int hsouth = TileHeight(tile + TileDiffXY(1, 1)); // Height of the South corner.
+	int hnorth = TileHeight(tile);                                 // Height of the North corner.
+	int hwest  = TileHeight(tile + TileDiffXY(1, 0, MapOf(tile))); // Height of the West corner.
+	int heast  = TileHeight(tile + TileDiffXY(0, 1, MapOf(tile))); // Height of the East corner.
+	int hsouth = TileHeight(tile + TileDiffXY(1, 1, MapOf(tile))); // Height of the South corner.
 
 	return GetTileSlopeGivenHeight(hnorth, hwest, heast, hsouth, h);
 }
@@ -149,6 +150,9 @@ Slope GetTilePixelSlopeOutsideMap(int x, int y, int *h)
 	if (h != NULL) *h *= TILE_HEIGHT;
 	return s;
 }
+/* instantiate */
+template Slope GetTileSlope<false>(TileIndex tile, int *h);
+template Slope GetTileSlope<true>(GenericTileIndex tile, int *h);
 
 /**
  * Check if a given tile is flat
@@ -179,17 +183,21 @@ bool IsTileFlat(TileIndex tile, int *h)
  * @param tile Tile to compute height of
  * @return Minimum height of the tile
  */
-int GetTileZ(TileIndex tile)
+template <bool Tgeneric>
+int GetTileZ(typename TileIndexT<Tgeneric>::T tile)
 {
-	if (TileX(tile) == MapMaxX() || TileY(tile) == MapMaxY()) return 0;
+	if (TileX(tile) == MapMaxX(MapOf(tile)) || TileY(tile) == MapMaxY(MapOf(tile))) return 0;
 
 	int h =    TileHeight(tile);                     // N corner
-	h = min(h, TileHeight(tile + TileDiffXY(1, 0))); // W corner
-	h = min(h, TileHeight(tile + TileDiffXY(0, 1))); // E corner
-	h = min(h, TileHeight(tile + TileDiffXY(1, 1))); // S corner
+	h = min(h, TileHeight(tile + TileDiffXY(1, 0, MapOf(tile)))); // W corner
+	h = min(h, TileHeight(tile + TileDiffXY(0, 1, MapOf(tile)))); // E corner
+	h = min(h, TileHeight(tile + TileDiffXY(1, 1, MapOf(tile)))); // S corner
 
 	return h;
 }
+/* instantiate */
+template int GetTileZ<false>(TileIndex tile);
+template int GetTileZ<true>(GenericTileIndex tile);
 
 /**
  * Get bottom height of the tile outside map.
@@ -212,14 +220,15 @@ int GetTilePixelZOutsideMap(int x, int y)
  * @param t Tile to compute height of
  * @return Maximum height of the tile
  */
-int GetTileMaxZ(TileIndex t)
+template <bool Tgeneric>
+int GetTileMaxZ(typename TileIndexT<Tgeneric>::T t)
 {
-	if (TileX(t) == MapMaxX() || TileY(t) == MapMaxY()) return TileHeightOutsideMap(TileX(t), TileY(t));
+	if (TileX(t) == MapMaxX(MapOf(t)) || TileY(t) == MapMaxY(MapOf(t))) return TileHeightOutsideMap(TileX(t), TileY(t));
 
 	int h =         TileHeight(t);                     // N corner
-	h = max<int>(h, TileHeight(t + TileDiffXY(1, 0))); // W corner
-	h = max<int>(h, TileHeight(t + TileDiffXY(0, 1))); // E corner
-	h = max<int>(h, TileHeight(t + TileDiffXY(1, 1))); // S corner
+	h = max<int>(h, TileHeight(t + TileDiffXY(1, 0, MapOf(t)))); // W corner
+	h = max<int>(h, TileHeight(t + TileDiffXY(0, 1, MapOf(t)))); // E corner
+	h = max<int>(h, TileHeight(t + TileDiffXY(1, 1, MapOf(t)))); // S corner
 
 	return h;
 }
@@ -241,3 +250,7 @@ int GetTileMaxPixelZOutsideMap(int x, int y)
 
 	return h * TILE_HEIGHT;
 }
+
+/* instantiate */
+template int GetTileMaxZ<false>(TileIndex t);
+template int GetTileMaxZ<true>(GenericTileIndex t);

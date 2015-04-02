@@ -1176,9 +1176,9 @@ static char *FormatString(char *buff, const char *str_arg, StringParameters *arg
 					/* Shows only passengers and mails since other cargoes provide no useful value. (all 1) */
 					if (cs->Index() == CT_PASSENGERS || cs->Index() == CT_MAIL) {
 						if (cs->Index() == CT_PASSENGERS) {
-							n = seprintf(buff, last, "(%d)", args->GetParam(2));
+							n = seprintf(buff, last, "(%d)", (int) args->GetParam(2));
 						} else {
-							n = seprintf(buff, last, "(%d)", args->GetParam(3));
+							n = seprintf(buff, last, "(%d)", (int) args->GetParam(3));
 						}
 						buff += n;
 					}

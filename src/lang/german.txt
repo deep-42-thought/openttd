@@ -3368,6 +3368,9 @@ STR_GROUP_REMOVE_ALL_VEHICLES                                   :Liste leeren
 
 STR_GROUP_RENAME_CAPTION                                        :{BLACK}Gruppe umbenennen
 
+STR_GROUP_PROFIT_THIS_YEAR                                      :{BLACK}Profit im letzten Jahr: {CURRENCY_SHORT}
+STR_GROUP_PROFIT_LAST_YEAR                                      :{BLACK}Profit in diesem Jahr: {CURRENCY_SHORT}
+
 # Build vehicle window
 STR_BUY_VEHICLE_TRAIN_RAIL_CAPTION                              :Neue Schienenfahrzeuge
 STR_BUY_VEHICLE_TRAIN_ELRAIL_CAPTION                            :Neue elektrische Schienenfahrzeuge

@@ -123,15 +123,15 @@ public:
 #	define LANDINFOD_LEVEL 1
 #endif
 		DEBUG(misc, LANDINFOD_LEVEL, "TILE: %#x (%i,%i)", tile, TileX(tile), TileY(tile));
-		DEBUG(misc, LANDINFOD_LEVEL, "type   = %#x", _m[tile].type);
-		DEBUG(misc, LANDINFOD_LEVEL, "height = %#x", _m[tile].height);
-		DEBUG(misc, LANDINFOD_LEVEL, "m1     = %#x", _m[tile].m1);
-		DEBUG(misc, LANDINFOD_LEVEL, "m2     = %#x", _m[tile].m2);
-		DEBUG(misc, LANDINFOD_LEVEL, "m3     = %#x", _m[tile].m3);
-		DEBUG(misc, LANDINFOD_LEVEL, "m4     = %#x", _m[tile].m4);
-		DEBUG(misc, LANDINFOD_LEVEL, "m5     = %#x", _m[tile].m5);
-		DEBUG(misc, LANDINFOD_LEVEL, "m6     = %#x", _me[tile].m6);
-		DEBUG(misc, LANDINFOD_LEVEL, "m7     = %#x", _me[tile].m7);
+		DEBUG(misc, LANDINFOD_LEVEL, "type   = %#x", GetTile(tile)->type);
+		DEBUG(misc, LANDINFOD_LEVEL, "height = %#x", GetTile(tile)->height);
+		DEBUG(misc, LANDINFOD_LEVEL, "m1     = %#x", GetTile(tile)->m1);
+		DEBUG(misc, LANDINFOD_LEVEL, "m2     = %#x", GetTile(tile)->m2);
+		DEBUG(misc, LANDINFOD_LEVEL, "m3     = %#x", GetTile(tile)->m3);
+		DEBUG(misc, LANDINFOD_LEVEL, "m4     = %#x", GetTile(tile)->m4);
+		DEBUG(misc, LANDINFOD_LEVEL, "m5     = %#x", GetTile(tile)->m5);
+		DEBUG(misc, LANDINFOD_LEVEL, "m6     = %#x", GetTileEx(tile)->m6);
+		DEBUG(misc, LANDINFOD_LEVEL, "m7     = %#x", GetTileEx(tile)->m7);
 #undef LANDINFOD_LEVEL
 	}
 

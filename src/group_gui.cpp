@@ -74,6 +74,7 @@ static const NWidgetPart _nested_group_widgets[] = {
 				NWidget(WWT_DROPDOWN, COLOUR_GREY, WID_GL_SORT_BY_DROPDOWN), SetMinimalSize(167, 12), SetDataTip(0x0, STR_TOOLTIP_SORT_CRITERIA),
 				NWidget(WWT_PANEL, COLOUR_GREY), SetMinimalSize(12, 12), SetResize(1, 0), EndContainer(),
 			EndContainer(),
+			NWidget(WWT_PANEL, COLOUR_GREY, WID_GL_GROUP_INFO), SetMinimalSize(200, 25), SetFill(1, 0), EndContainer(),
 			NWidget(NWID_HORIZONTAL),
 				NWidget(WWT_MATRIX, COLOUR_GREY, WID_GL_LIST_VEHICLE), SetMinimalSize(248, 0), SetMatrixDataTip(1, 0, STR_NULL), SetResize(1, 1), SetFill(1, 0), SetScrollbar(WID_GL_LIST_VEHICLE_SCROLLBAR),
 				NWidget(NWID_VSCROLLBAR, COLOUR_GREY, WID_GL_LIST_VEHICLE_SCROLLBAR),
@@ -364,6 +365,7 @@ public:
 
 				/* Minimum height is the height of the list widget minus all and default vehicles... */
 				size->height =  4 * GetVehicleListHeight(this->vli.vtype, this->tiny_step_height) - 2 * this->tiny_step_height;
+				size->height += 25;
 
 				/* ... minus the buttons at the bottom ... */
 				uint max_icon_height = GetSpriteSize(this->GetWidget<NWidgetCore>(WID_GL_CREATE_GROUP)->widget_data).height;
@@ -526,6 +528,29 @@ public:
 			case WID_GL_DEFAULT_VEHICLES:
 				DrawGroupInfo(r.top + WD_FRAMERECT_TOP, r.left, r.right, DEFAULT_GROUP);
 				break;
+
+			case WID_GL_GROUP_INFO: {
+				Money this_year = 0;
+				Money last_year = 0;
+
+				for (uint i = 0; i < this->vehicles.Length(); i++) {
+					const Vehicle *v = this->vehicles[i];
+
+					assert(v->owner == this->owner);
+
+					if (this->vli.index == ALL_GROUP || v->group_id == this->vli.index) {
+						this_year += v->GetDisplayProfitThisYear();
+						last_year += v->GetDisplayProfitLastYear();
+					}
+				}
+
+				SetDParam(0, this_year);
+				DrawString(r.left + WD_FRAMERECT_LEFT + 8, r.right - WD_FRAMERECT_RIGHT - 8, r.top + WD_FRAMERECT_TOP + 1, STR_GROUP_PROFIT_THIS_YEAR, TC_BLACK);
+				SetDParam(0, last_year);
+				DrawString(r.left + WD_FRAMERECT_LEFT + 8, r.right - WD_FRAMERECT_RIGHT - 8, r.top + WD_FRAMERECT_TOP + FONT_HEIGHT_NORMAL + 2, STR_GROUP_PROFIT_LAST_YEAR, TC_BLACK);
+
+				break;
+			}
 
 			case WID_GL_LIST_GROUP: {
 				int y1 = r.top + WD_FRAMERECT_TOP;
@@ -884,7 +909,6 @@ public:
 		if (this->vehicle_sel == vehicle) ResetObjectToPlace();
 	}
 };
-
 
 static WindowDesc _other_group_desc(
 	WDP_AUTO, "list_groups", 460, 246,
