@@ -233,6 +233,7 @@ STR_TOOLTIP_GROUP_ORDER                                         :{BLACK}Gruppier
 STR_TOOLTIP_SORT_ORDER                                          :{BLACK}Sortierreihenfolge auswählen (absteigend/aufsteigend)
 STR_TOOLTIP_SORT_CRITERIA                                       :{BLACK}Sortierkriterien auswählen
 STR_TOOLTIP_FILTER_CRITERIA                                     :{BLACK}Filterkriterien auswählen
+STR_BUTTON_COVERAGE                                             :{BLACK}Einzugsbereich
 STR_BUTTON_SORT_BY                                              :{BLACK}Sortieren nach
 STR_BUTTON_LOCATION                                             :{BLACK}Standort
 STR_BUTTON_RENAME                                               :{BLACK}Umbenennen
@@ -3171,6 +3172,8 @@ STR_CARGO_RATING_OUTSTANDING                                    :Hervorragend
 STR_STATION_VIEW_CENTER_TOOLTIP                                 :{BLACK}Hauptansicht zur Station scrollen. Strg+Klick öffnet neue Zusatzansicht bei der Station
 STR_STATION_VIEW_RENAME_TOOLTIP                                 :{BLACK}Namen der Station ändern
 
+STR_STATION_VIEW_COVERAGE                                       :{BLACK}Einzugsbereich
+STR_STATION_VIEW_COVERAGE_TIP                                   :{BLACK}Einzugsbereich der Station anzeigen
 STR_STATION_VIEW_SCHEDULED_TRAINS_TOOLTIP                       :{BLACK}Alle Züge, die diesen Bahnhof anfahren, anzeigen
 STR_STATION_VIEW_SCHEDULED_ROAD_VEHICLES_TOOLTIP                :{BLACK}Alle Straßenfahrzeuge, die diese Station anfahren, anzeigen
 STR_STATION_VIEW_SCHEDULED_AIRCRAFT_TOOLTIP                     :{BLACK}Alle Flugzeuge, die diesen Flughafen anfliegen, anzeigen

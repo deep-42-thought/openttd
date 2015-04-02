@@ -912,6 +912,12 @@
     <ClInclude Include="..\src\order_type.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\overlay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\overlay_cmd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\src\pbs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1690,6 +1696,9 @@
       <Filter>Command handlers</Filter>
     </ClCompile>
     <ClCompile Include="..\src\order_cmd.cpp">
+      <Filter>Command handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\overlay_cmd.cpp">
       <Filter>Command handlers</Filter>
     </ClCompile>
     <ClCompile Include="..\src\rail_cmd.cpp">
