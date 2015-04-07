@@ -6,6 +6,7 @@ bin/ai/*
 !bin/data
 bin/baseset/*
 !bin/baseset/openttd.grf
+!bin/baseset/clipboard.grf
 !bin/baseset/opntitle.dat
 !bin/baseset/orig_*.obg
 !bin/baseset/orig_*.obs
