@@ -433,7 +433,7 @@ public:
 	void Init(RawTileIndex *my_index, int a_max, int b_max, Map *my_map)
 	{
 		this->base_x = TileX(GenericTileIndex(*my_index, my_map));
-		this->base_x = TileY(GenericTileIndex(*my_index, my_map));
+		this->base_y = TileY(GenericTileIndex(*my_index, my_map));
 		this->a_cur = 0;
 		this->b_cur = 0;
 		this->a_max = a_max;
