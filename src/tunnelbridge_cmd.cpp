@@ -667,8 +667,6 @@ CommandCost CmdBuildTunnel(TileIndex start_tile, DoCommandFlag flags, uint32 p1,
 	if (IsBetweenChunnelPortals(start_tile, direction)) return_cmd_error(STR_ERROR_ANOTHER_TUNNEL_IN_THE_WAY);
 	if (IsBetweenChunnelPortals(start_tile, ChangeDiagDir(direction, DIAGDIRDIFF_90RIGHT))) return_cmd_error(STR_ERROR_ANOTHER_TUNNEL_IN_THE_WAY);
 
-	CommandCost ret = DoCommand(start_tile, 0, 0, flags, CMD_LANDSCAPE_CLEAR);
-	if (ret.Failed()) return ret;
 	/* Check if there is already the entrance we are willing to build */
 	bool may_be_already_built =
 			(flags & DC_PASTE) &&
@@ -708,6 +706,7 @@ CommandCost CmdBuildTunnel(TileIndex start_tile, DoCommandFlag flags, uint32 p1,
 	int tiles_bump = 25;
 	end_tile += delta;
 
+	CommandCost ret(EXPENSES_CONSTRUCTION);
 	/* XXX: The 'ret' is used recursively inside the loop to calculate the cost-by-length:
 	 * 'ret += ret >> 3'  */
 	Slope end_tileh;
@@ -738,8 +737,8 @@ CommandCost CmdBuildTunnel(TileIndex start_tile, DoCommandFlag flags, uint32 p1,
 					tiles_coef++;
 					tiles_bump *= 2;
 				}
-				cost.AddCost(_price[PR_BUILD_TUNNEL]);
-				cost.AddCost(cost.GetCost() >> tiles_coef); // add a multiplier for longer tunnels
+				ret.AddCost(_price[PR_BUILD_TUNNEL]);
+				ret.AddCost(ret.GetCost() >> tiles_coef); // add a multiplier for longer tunnels
 			}
 		}
 
@@ -762,6 +761,7 @@ CommandCost CmdBuildTunnel(TileIndex start_tile, DoCommandFlag flags, uint32 p1,
 		ret.AddCost(_price[PR_BUILD_TUNNEL]);
 		ret.AddCost(ret.GetCost() >> tiles_coef); // add a multiplier for longer tunnels
 	}
+	cost.AddCost(ret.GetCost());
 
 	/* is the end tile reached? */
 	if (expected_end_tile != 0 && expected_end_tile != end_tile) {
