@@ -1261,9 +1261,9 @@ STR_CONFIG_SETTING_STOP_ON_COMPETITOR_ROAD_HELPTEXT             :Allow construct
 STR_CONFIG_SETTING_DYNAMIC_ENGINES_EXISTING_VEHICLES            :{WHITE}Changing this setting is not possible when there are vehicles
 STR_CONFIG_SETTING_INFRASTRUCTURE_MAINTENANCE                   :Infrastructure maintenance: {STRING2}
 STR_CONFIG_SETTING_INFRASTRUCTURE_MAINTENANCE_HELPTEXT          :When enabled, infrastructure causes maintenance costs. The cost grows over-proportional with the network size, thus affecting bigger companies more than smaller ones
-STR_CONFIG_SETTING_CLIPBOARD_CAPACITY                          :Clipboard capacity: {STRING2}
-STR_CONFIG_SETTING_CLIPBOARD_CAPACITY_VALUE                    :{0:NUM}{CROSS}{0:NUM} tiles
-STR_CONFIG_SETTING_CLIPBOARD_CAPACITY_HELPTEXT                 :Maximum allowed width/height of area that can be copied into clipboard
+STR_CONFIG_SETTING_CLIPBOARD_CAPACITY                           :Clipboard capacity: {STRING2}
+STR_CONFIG_SETTING_CLIPBOARD_CAPACITY_VALUE                     :{0:NUM}x{0:NUM} tiles
+STR_CONFIG_SETTING_CLIPBOARD_CAPACITY_HELPTEXT                  :Maximum allowed width/height of area that can be copied into clipboard
 
 STR_CONFIG_SETTING_NEVER_EXPIRE_AIRPORTS                        :Airports never expire: {STRING2}
 STR_CONFIG_SETTING_NEVER_EXPIRE_AIRPORTS_HELPTEXT               :Enabling this setting makes each airport type stay available forever after its introduction
