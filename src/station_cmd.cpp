@@ -436,7 +436,7 @@ void Station::UpdateVirtCoord()
 
 	SetDParam(0, this->index);
 	SetDParam(1, this->facilities);
-	this->sign.UpdatePosition(pt.x, pt.y, STR_VIEWPORT_STATION);
+	this->sign.UpdatePosition(pt.x, pt.y, STR_VIEWPORT_STATION, STR_VIEWPORT_STATION);
 
 	SetWindowDirty(WC_STATION_VIEW, this->index);
 }
@@ -606,7 +606,7 @@ CargoArray GetProductionRateAroundTiles(TileIndex tile, int w, int h, int rad)
 			if (!IsHouseCompleted(tile)) continue;
 
 			const HouseSpec *hs = HouseSpec::Get(GetHouseType(tile));
-			
+
 			/* Use expected values to calculate supply forecasting since there is a random factor
 			 * in the equation.
 			 * E[x] = x1p1 + x2p2 + ... + xkpk
@@ -618,7 +618,7 @@ CargoArray GetProductionRateAroundTiles(TileIndex tile, int w, int h, int rad)
 			for (uint i = 1; i < hs->population; i++) {
 				sum += i;
 			}
-			/* Bitshift to the right by 8 is from the above equation and 3 is 
+			/* Bitshift to the right by 8 is from the above equation and 3 is
 			 * to divide by 8. For details, look at TileLoop_Town() in town_cmd.cpp */
 			uint amt = (sum >> 11) + 1;
 			if (EconomyIsInRecession()) amt = (amt + 1) >> 1;

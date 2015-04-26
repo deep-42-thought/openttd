@@ -49,7 +49,7 @@ void Sign::UpdateVirtCoord()
 {
 	Point pt = RemapCoords(this->x, this->y, this->z);
 	SetDParam(0, this->index);
-	this->sign.UpdatePosition(pt.x, pt.y - 6 * ZOOM_LVL_BASE, STR_WHITE_SIGN);
+	this->sign.UpdatePosition(pt.x, pt.y - 6 * ZOOM_LVL_BASE, STR_WHITE_SIGN, STR_WHITE_SIGN);
 }
 
 /** Update the coordinates of all signs */

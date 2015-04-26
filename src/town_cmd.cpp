@@ -400,7 +400,8 @@ void Town::UpdateVirtCoord()
 	Point pt = RemapCoords2(TileX(this->xy) * TILE_SIZE, TileY(this->xy) * TILE_SIZE);
 	SetDParam(0, this->index);
 	SetDParam(1, this->cache.population);
-	this->cache.sign.UpdatePosition(pt.x, pt.y - 24 * ZOOM_LVL_BASE, this->Label());
+	this->cache.sign.UpdatePosition(pt.x, pt.y - 24 * ZOOM_LVL_BASE, this->Label(),
+		STR_VIEWPORT_TOWN);
 
 	SetWindowDirty(WC_TOWN_VIEW, this->index);
 }
@@ -1361,9 +1362,9 @@ static bool CanFollowRoad(TileIndex tile, DiagDirection dir)
  * Returns "growth" if a house was built, or no if the build failed.
  * @param t town to inquiry
  * @param tile to inquiry
- * @return something other than zero(0)if town expansion was possible
+ * @return true if town expansion was possible
  */
-static int GrowTownAtRoad(Town *t, TileIndex tile)
+static bool GrowTownAtRoad(Town *t, TileIndex tile)
 {
 	/* Special case.
 	 * @see GrowTownInTile Check the else if
@@ -1400,7 +1401,7 @@ static int GrowTownAtRoad(Town *t, TileIndex tile)
 		 * and return if no more road blocks available */
 		if (IsValidDiagDirection(target_dir)) cur_rb &= ~DiagDirToRoadBits(ReverseDiagDir(target_dir));
 		if (cur_rb == ROAD_NONE) {
-			return _grow_town_result;
+			return _grow_town_result == GROWTH_SUCCEED;
 		}
 
 		if (IsTileType(tile, MP_TUNNELBRIDGE)) {
@@ -1410,7 +1411,7 @@ static int GrowTownAtRoad(Town *t, TileIndex tile)
 			/* Select a random bit from the blockmask, walk a step
 			 * and continue the search from there. */
 			do {
-				if (cur_rb == ROAD_NONE) return GROWTH_SEARCH_STOPPED;
+				if (cur_rb == ROAD_NONE) return false;
 				RoadBits target_bits;
 				do {
 					target_dir = RandomDiagDir();
@@ -1424,7 +1425,7 @@ static int GrowTownAtRoad(Town *t, TileIndex tile)
 		if (IsTileType(tile, MP_ROAD) && !IsRoadDepot(tile) && HasTileRoadType(tile, ROADTYPE_ROAD)) {
 			/* Don't allow building over roads of other cities */
 			if (IsRoadOwner(tile, ROADTYPE_ROAD, OWNER_TOWN) && Town::GetByTile(tile) != t) {
-				_grow_town_result = GROWTH_SUCCEED;
+				return false;
 			} else if (IsRoadOwner(tile, ROADTYPE_ROAD, OWNER_NONE) && _game_mode == GM_EDITOR) {
 				/* If we are in the SE, and this road-piece has no town owner yet, it just found an
 				 * owner :) (happy happy happy road now) */
@@ -1436,7 +1437,7 @@ static int GrowTownAtRoad(Town *t, TileIndex tile)
 		/* Max number of times is checked. */
 	} while (--_grow_town_result >= 0);
 
-	return (_grow_town_result == -2);
+	return _grow_town_result == GROWTH_SUCCEED - 1;
 }
 
 /**
@@ -1458,7 +1459,7 @@ static RoadBits GenRandomRoadBits()
 /**
  * Grow the town
  * @param t town to grow
- * @return true iff a house was built
+ * @return true iff something (house, road, bridge, ...) was built
  */
 static bool GrowTown(Town *t)
 {
@@ -1487,9 +1488,9 @@ static bool GrowTown(Town *t)
 	const TileIndexDiffC *ptr;
 	for (ptr = _town_coord_mod; ptr != endof(_town_coord_mod); ++ptr) {
 		if (GetTownRoadBits(tile) != ROAD_NONE) {
-			int r = GrowTownAtRoad(t, tile);
+			bool success = GrowTownAtRoad(t, tile);
 			cur_company.Restore();
-			return r != 0;
+			return success;
 		}
 		tile = TILE_ADD(tile, ToTileIndexDiff(*ptr));
 	}
