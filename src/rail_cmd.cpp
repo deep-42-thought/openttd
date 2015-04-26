@@ -492,31 +492,31 @@ CommandCost CmdBuildSingleRails(TileIndex tile, DoCommandFlag flags, uint32 p1, 
 				RoadTypes roadtypes = GetRoadTypes(tile);
 				RoadBits road = GetRoadBits(tile, ROADTYPE_ROAD);
 				RoadBits tram = GetRoadBits(tile, ROADTYPE_TRAM);
-				switch (roadtypes) {
-					default: break;
-					case ROADTYPES_TRAM:
-						/* Tram crossings must always have road. */
-						if (flags & DC_EXEC) {
-							SetRoadOwner(tile, ROADTYPE_ROAD, _current_company);
-							Company *c = Company::GetIfValid(_current_company);
-							if (c != NULL) {
-								/* A full diagonal tile has two road bits. */
-								c->infrastructure.road[ROADTYPE_ROAD] += 2;
-								DirtyCompanyInfrastructureWindows(c->index);
+				if ((trackbits == TRACK_X && (road | tram) == ROAD_Y) ||
+						(trackbits == TRACK_Y && (road | tram) == ROAD_X)) {
+					switch (roadtypes) {
+						default: break;
+						case ROADTYPES_TRAM:
+							/* Tram crossings must always have road. */
+							if (flags & DC_EXEC) {
+								SetRoadOwner(tile, ROADTYPE_ROAD, _current_company);
+								Company *c = Company::GetIfValid(_current_company);
+								if (c != NULL) {
+									/* A full diagonal tile has two road bits. */
+									c->infrastructure.road[ROADTYPE_ROAD] += 2;
+									DirtyCompanyInfrastructureWindows(c->index);
+								}
 							}
-						}
-						roadtypes |= ROADTYPES_ROAD;
-						break;
+							roadtypes |= ROADTYPES_ROAD;
+							break;
 
-					case ROADTYPES_ALL:
-						if (road != tram) return CMD_ERROR;
-						break;
-				}
+						case ROADTYPES_ALL:
+							if (road != tram) return CMD_ERROR;
+							break;
+					}
 
-				road |= tram;
+					road |= tram;
 
-				if ((trackbits == TRACK_BIT_X && road == ROAD_Y) ||
-						(trackbits == TRACK_BIT_Y && road == ROAD_X)) {
 					if (flags & DC_EXEC) {
 						MakeRoadCrossing(tile, GetRoadOwner(tile, ROADTYPE_ROAD), GetRoadOwner(tile, ROADTYPE_TRAM), _current_company, (trackbits == TRACK_BIT_X ? AXIS_Y : AXIS_X), railtype, roadtypes, GetTownIndex(tile));
 						UpdateLevelCrossing(tile, false);
