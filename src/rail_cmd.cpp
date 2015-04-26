@@ -508,6 +508,7 @@ CommandCost CmdBuildSingleRails(TileIndex tile, DoCommandFlag flags, uint32 p1, 
 								}
 							}
 							roadtypes |= ROADTYPES_ROAD;
+							cost.AddCost(2 * _price[PR_BUILD_ROAD]);
 							break;
 
 						case ROADTYPES_ALL:
