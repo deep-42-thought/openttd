@@ -1334,7 +1334,7 @@ static bool CanFollowRoad(TileIndex tile, DiagDirection dir)
 	if (HasTileWaterGround(target_tile)) return false;
 
 	RoadBits target_rb = GetTownRoadBits(target_tile);
-	if (_settings_game.economy.allow_town_roads) {
+	if (_settings_game.economy.allow_town_roads || _generating_world) {
 		/* Check whether a road connection exists or can be build. */
 		switch (GetTileType(target_tile)) {
 			case MP_ROAD:
@@ -1354,7 +1354,7 @@ static bool CanFollowRoad(TileIndex tile, DiagDirection dir)
 		/* Check whether a road connection already exists,
 		 * and it leads somewhere else. */
 		RoadBits back_rb = DiagDirToRoadBits(ReverseDiagDir(dir));
-		return (target_rb & back_rb) != 0 && (target_rb & back_rb) != back_rb;
+		return (target_rb & back_rb) != 0 && (target_rb & ~back_rb) != 0;
 	}
 }
 
