@@ -928,10 +928,6 @@ STR_GAME_OPTIONS_CURRENCY_GEL                                   :Lari Georgià(G
 STR_GAME_OPTIONS_CURRENCY_IRR                                   :Rial Iranià(IRR)
 ############ end of currency region
 
-
-############ start of measuring units region
-############ end of measuring units region
-
 STR_GAME_OPTIONS_ROAD_VEHICLES_FRAME                            :{BLACK}Automòbils
 STR_GAME_OPTIONS_ROAD_VEHICLES_DROPDOWN_TOOLTIP                 :{BLACK}Selecciona el sentit de circulació dels automòbils
 STR_GAME_OPTIONS_ROAD_VEHICLES_DROPDOWN_LEFT                    :Condueix per l'esquerra
@@ -1609,9 +1605,9 @@ STR_CONFIG_SETTING_LARGER_TOWNS_DISABLED                        :Cap
 STR_CONFIG_SETTING_CITY_SIZE_MULTIPLIER                         :Multiplicador de mida inicial de ciutats: {STRING}
 STR_CONFIG_SETTING_CITY_SIZE_MULTIPLIER_HELPTEXT                :La grandària mitjana de les ciutats en relació als pobles a l'inici de la partida
 
-STR_CONFIG_SETTING_LINKGRAPH_INTERVAL                           :Actualitza el graf de distribució cada {STRING}{NBSP}di{P 0 a es}
+STR_CONFIG_SETTING_LINKGRAPH_INTERVAL                           :Actualitza el graf de distribució cada {STRING}{NBSP}di{P 0:2 a es}
 STR_CONFIG_SETTING_LINKGRAPH_INTERVAL_HELPTEXT                  :Temps entre recàlculs successius del graf de distribució. Cada recàlcul calcula els plans per un component del graf. Això significa que un valor X per aquest paràmetre no implica que tot el graf serà actualitzat cada X dies. Només alguns components ho seran. Com més curt el valor, més temps de processador es requerirà per calcular-ho. Com més llarg, més temps passarà fins que la distribució de càrregues comenci en noves rutes.
-STR_CONFIG_SETTING_LINKGRAPH_TIME                               :Empra {STRING}{NBSP}di{P 0 a es} per al recàlcul del graf de distribució
+STR_CONFIG_SETTING_LINKGRAPH_TIME                               :Empra {STRING}{NBSP}di{P 0:2 a es} per al recàlcul del graf de distribució
 STR_CONFIG_SETTING_LINKGRAPH_TIME_HELPTEXT                      :Temps dedicat a cada recàlcul d'un component del graf de connexions. Quan un recàlcul s'inicia, el programa crea un fil que pot executar-se durant aquest nombre de dies. Com més curt el valor, més probable que el fil no hagi acabat quan s'espera. Aleshores el programa s'atura fins que el fil acaba ("ralentització"). Com més llarg el valor, més temps requereix l'actualització de la distribució quan les rutes canvien.
 STR_CONFIG_SETTING_DISTRIBUTION_MANUAL                          :manual
 STR_CONFIG_SETTING_DISTRIBUTION_ASYMMETRIC                      :asimètric
@@ -3056,7 +3052,7 @@ STR_GOAL_QUESTION_CAPTION_INFORMATION                           :Informació
 STR_GOAL_QUESTION_CAPTION_WARNING                               :Alerta
 STR_GOAL_QUESTION_CAPTION_ERROR                                 :Error
 
-### Start of Goal Question button list
+############ Start of Goal Question button list
 STR_GOAL_QUESTION_BUTTON_CANCEL                                 :Cancel·la
 STR_GOAL_QUESTION_BUTTON_OK                                     :OK
 STR_GOAL_QUESTION_BUTTON_NO                                     :No
@@ -3075,6 +3071,7 @@ STR_GOAL_QUESTION_BUTTON_RESTART                                :Reinicia
 STR_GOAL_QUESTION_BUTTON_POSTPONE                               :Postposa
 STR_GOAL_QUESTION_BUTTON_SURRENDER                              :Rendir-se
 STR_GOAL_QUESTION_BUTTON_CLOSE                                  :Tanca
+############ End of Goal Question button list
 
 # Subsidies window
 STR_SUBSIDIES_CAPTION                                           :{WHITE}Subvencions

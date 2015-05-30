@@ -855,7 +855,7 @@ STR_NEWS_VEHICLE_IS_LOST                                        :{WHITE}{VEHICLE
 STR_NEWS_VEHICLE_IS_UNPROFITABLE                                :{WHITE}{VEHICLE}의 작년 수익이 {CURRENCY_LONG} 입니다.
 STR_NEWS_AIRCRAFT_DEST_TOO_FAR                                  :{WHITE}거리가 너무 멀어서 {VEHICLE}이 다음 목적지에 도착할 수 없습니다
 
-STR_NEWS_ORDER_REFIT_FAILED                                     :{WHITE}경로상에 계획된 개조에 실패하여 {VEHICLE}{P "가" "이"} 운행을 멈췄습니다.
+STR_NEWS_ORDER_REFIT_FAILED                                     :{WHITE}경로상에 계획된 개조에 실패하여 {VEHICLE}운행을 멈췄습니다.
 STR_NEWS_VEHICLE_AUTORENEW_FAILED                               :{WHITE}{VEHICLE}의 자동 교체에 실패하였습니다{}{STRING}
 
 STR_NEWS_NEW_VEHICLE_NOW_AVAILABLE                              :{BIG_FONT}{BLACK}신형 {STRING}{G 0 "을" "를"} 사용할 수 있습니다!
@@ -927,10 +927,6 @@ STR_GAME_OPTIONS_CURRENCY_CUSTOM                                :사용자 설�
 STR_GAME_OPTIONS_CURRENCY_GEL                                   :그루지야 라리 (GEL)
 STR_GAME_OPTIONS_CURRENCY_IRR                                   :이란 리알 (IRR)
 ############ end of currency region
-
-
-############ start of measuring units region
-############ end of measuring units region
 
 STR_GAME_OPTIONS_ROAD_VEHICLES_FRAME                            :{BLACK}차량 통행 방식
 STR_GAME_OPTIONS_ROAD_VEHICLES_DROPDOWN_TOOLTIP                 :{BLACK}차량 통행 방법 선택
@@ -3056,7 +3052,7 @@ STR_GOAL_QUESTION_CAPTION_INFORMATION                           :{G=f}정보
 STR_GOAL_QUESTION_CAPTION_WARNING                               :{G=f}경고
 STR_GOAL_QUESTION_CAPTION_ERROR                                 :오류
 
-### Start of Goal Question button list
+############ Start of Goal Question button list
 STR_GOAL_QUESTION_BUTTON_CANCEL                                 :취소
 STR_GOAL_QUESTION_BUTTON_OK                                     :{G=m}확인
 STR_GOAL_QUESTION_BUTTON_NO                                     :아니요
@@ -3075,6 +3071,7 @@ STR_GOAL_QUESTION_BUTTON_RESTART                                :재시작
 STR_GOAL_QUESTION_BUTTON_POSTPONE                               :연기
 STR_GOAL_QUESTION_BUTTON_SURRENDER                              :양도
 STR_GOAL_QUESTION_BUTTON_CLOSE                                  :닫기
+############ End of Goal Question button list
 
 # Subsidies window
 STR_SUBSIDIES_CAPTION                                           :{WHITE}보조금
