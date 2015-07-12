@@ -912,7 +912,7 @@ STR_GAME_OPTIONS_CURRENCY_ISK                                   :Icelandic Krona
 STR_GAME_OPTIONS_CURRENCY_ITL                                   :Italian Lira (ITL)
 STR_GAME_OPTIONS_CURRENCY_NLG                                   :Dutch Guilder (NLG)
 STR_GAME_OPTIONS_CURRENCY_NOK                                   :Norwegian Krone (NOK)
-STR_GAME_OPTIONS_CURRENCY_PLN                                   :Polish Złoty (PLN)
+STR_GAME_OPTIONS_CURRENCY_PLN                                   :Polish Z?oty (PLN)
 STR_GAME_OPTIONS_CURRENCY_RON                                   :Romanian Leu (RON)
 STR_GAME_OPTIONS_CURRENCY_RUR                                   :Russian Rubles (RUR)
 STR_GAME_OPTIONS_CURRENCY_SIT                                   :Slovenian Tolar (SIT)
@@ -1293,7 +1293,8 @@ STR_CONFIG_SETTING_POPULATION_IN_LABEL                          :Show town popul
 STR_CONFIG_SETTING_POPULATION_IN_LABEL_HELPTEXT                 :Display the population of towns in their label on the map
 STR_CONFIG_SETTING_GRAPH_LINE_THICKNESS                         :Thickness of lines in graphs: {STRING2}
 STR_CONFIG_SETTING_GRAPH_LINE_THICKNESS_HELPTEXT                :Width of the line in the graphs. A thin line is more precisely readable, a thicker line is easier to see and colours are easier to distinguish
-STR_CONFIG_SETTING_FORECAST_DISPLAY                             :{LTBLUE}Display supply and demand forecasting on station building: {ORANGE}{STRING1}
+STR_CONFIG_SETTING_FORECAST_DISPLAY                             :{LTBLUE}Display supply and demand forecasting on station building: {ORANGE}{STRING2}
+STR_CONFIG_SETTING_FORECAST_DISPLAY_HELPTEXT                    :Display supply and demand forecasting on station building?
 
 STR_CONFIG_SETTING_LANDSCAPE                                    :Landscape: {STRING2}
 STR_CONFIG_SETTING_LANDSCAPE_HELPTEXT                           :Landscapes define basic gameplay scenarios with different cargos and town growth requirements. NewGRF and Game Scripts allow finer control though
