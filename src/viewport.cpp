@@ -91,7 +91,7 @@
 #include <map>
 
 #include "table/strings.h"
-#include "table/palettes.h"
+#include "table/string_colours.h"
 
 #include "safeguards.h"
 
