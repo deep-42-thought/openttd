@@ -1419,14 +1419,14 @@ static void DrawTile_TunnelBridge(TileInfo *ti)
 				}
 			}
 
-			if (HasCatenaryDrawn(GetRailType(ti->tile))) {
+			if (HasRailCatenaryDrawn(GetRailType(ti->tile))) {
 				/* Maybe draw pylons on the entry side */
-				DrawCatenary(ti);
+				DrawRailCatenary(ti);
 
 				catenary = true;
 				StartSpriteCombine();
 				/* Draw wire above the ramp */
-				DrawCatenaryOnTunnel(ti);
+				DrawRailCatenaryOnTunnel(ti);
 			}
 		}
 
@@ -1547,8 +1547,8 @@ static void DrawTile_TunnelBridge(TileInfo *ti)
 			}
 
 			EndSpriteCombine();
-			if (HasCatenaryDrawn(GetRailType(ti->tile))) {
-				DrawCatenary(ti);
+			if (HasRailCatenaryDrawn(GetRailType(ti->tile))) {
+				DrawRailCatenary(ti);
 			}
 		}
 
@@ -1601,7 +1601,7 @@ void DrawBridgeMiddle(const TileInfo *ti)
 {
 	/* Sectional view of bridge bounding boxes:
 	 *
-	 *  1           2                                1,2 = SpriteCombine of Bridge front/(back&floor) and TramCatenary
+	 *  1           2                                1,2 = SpriteCombine of Bridge front/(back&floor) and RoadCatenary
 	 *  1           2                                  3 = empty helper BB
 	 *  1     7     2                                4,5 = pillars under higher bridges
 	 *  1 6 88888 6 2                                  6 = elrail-pylons
@@ -1700,8 +1700,8 @@ void DrawBridgeMiddle(const TileInfo *ti)
 
 		EndSpriteCombine();
 
-		if (HasCatenaryDrawn(GetRailType(rampsouth))) {
-			DrawCatenaryOnBridge(ti);
+		if (HasRailCatenaryDrawn(GetRailType(rampsouth))) {
+			DrawRailCatenaryOnBridge(ti);
 		}
 		if (HasWormholeSignals(rampsouth)) {
 			IsTunnelBridgeExit(rampsouth) ? DrawBrigeSignalOnMiddelPart(ti, rampnorth, z): DrawBrigeSignalOnMiddelPart(ti, rampsouth, z);
@@ -1824,6 +1824,7 @@ static void GetTileDesc_TunnelBridge(TileIndex tile, TileDesc *td)
 	if (tt == TRANSPORT_RAIL) {
 		const RailtypeInfo *rti = GetRailTypeInfo(GetRailType(tile));
 		td->rail_speed = rti->max_speed;
+		td->railtype = rti->strings.name;
 
 		if (!IsTunnel(tile)) {
 			uint16 spd = GetBridgeSpec(GetBridgeType(tile))->speed;
