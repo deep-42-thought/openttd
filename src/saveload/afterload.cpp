@@ -154,7 +154,7 @@ static void ConvertTownOwner()
 				if (GB(_main_map.m[tile].m5, 4, 2) == ROAD_TILE_CROSSING && HasBit(_main_map.m[tile].m3, 7)) {
 					_main_map.m[tile].m3 = OWNER_TOWN;
 				}
-				/* FALL THROUGH */
+				FALLTHROUGH;
 
 			case MP_TUNNELBRIDGE:
 				if (_main_map.m[tile].m1 & 0x80) SetTileOwner(tile, OWNER_TOWN);

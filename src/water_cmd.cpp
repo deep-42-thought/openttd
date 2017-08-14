@@ -445,7 +445,7 @@ CommandCost CmdBuildCanal(TileIndex tile, DoCommandFlag flags, uint32 p1, uint32
 						MakeSea(tile);
 						break;
 					}
-					/* FALL THROUGH */
+					FALLTHROUGH;
 
 				default:
 					MakeCanal(tile, _current_company, Random());
@@ -1024,7 +1024,7 @@ FloodingBehaviour GetFloodingBehaviour(TileIndex tile)
 				Slope tileh = GetTileSlope(tile);
 				return (IsSlopeWithOneCornerRaised(tileh) ? FLOOD_ACTIVE : FLOOD_DRYUP);
 			}
-			/* FALL THROUGH */
+			FALLTHROUGH;
 		case MP_STATION:
 		case MP_INDUSTRY:
 		case MP_OBJECT:
@@ -1073,7 +1073,7 @@ void DoFloodTile(TileIndex target)
 					flooded = true;
 					break;
 				}
-				/* FALL THROUGH */
+				FALLTHROUGH;
 
 			case MP_CLEAR:
 				if (DoCommand(target, 0, 0, DC_EXEC, CMD_LANDSCAPE_CLEAR).Succeeded()) {
