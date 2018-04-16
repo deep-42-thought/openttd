@@ -3020,7 +3020,7 @@ STR_LAI_OBJECT_DESCRIPTION_COMPANY_OWNED_LAND                   :Зямля на
 STR_ABOUT_OPENTTD                                               :{WHITE}Аб OpenTTD
 STR_ABOUT_ORIGINAL_COPYRIGHT                                    :{BLACK}Арыґінальныя аўтарскія правы {COPYRIGHT} 1995 Chris Sawyer. Усе правы абароненыя.
 STR_ABOUT_VERSION                                               :{BLACK}OpenTTD вэрсія {REV}
-STR_ABOUT_COPYRIGHT_OPENTTD                                     :{BLACK}OpenTTD {COPYRIGHT} 2002–2017 Каманда распрацоўнікаў OpenTTD
+STR_ABOUT_COPYRIGHT_OPENTTD                                     :{BLACK}OpenTTD {COPYRIGHT} 2002–2018 Каманда распрацоўнікаў OpenTTD
 
 # Save/load game/scenario
 STR_SAVELOAD_SAVE_CAPTION                                       :{WHITE}Захаваць гульню
@@ -3445,8 +3445,8 @@ STR_STATION_VIEW_ACCEPTS_BUTTON                                 :{BLACK}Прым
 STR_STATION_VIEW_ACCEPTS_TOOLTIP                                :{BLACK}Паказаць сьпіс прымаемых грузаў
 STR_STATION_VIEW_ACCEPTS_CARGO                                  :{BLACK}Прымае: {WHITE}{CARGO_LIST}
 
-STR_STATIOV_VIEW_EXCLUSIVE_RIGHTS_SELF                          :{BLACK}Гэта станцыя мае эксклюзыўныя транспартныя правы ў гэтым населеным пункце.
-STR_STATIOV_VIEW_EXCLUSIVE_RIGHTS_COMPANY                       :{YELLOW}{COMPANY}{BLACK} набыў эксклюзыўныя транспартныя правы ў гэтым населеным пункце.
+STR_STATION_VIEW_EXCLUSIVE_RIGHTS_SELF                          :{BLACK}Гэта станцыя мае эксклюзыўныя транспартныя правы ў гэтым населеным пункце.
+STR_STATION_VIEW_EXCLUSIVE_RIGHTS_COMPANY                       :{YELLOW}{COMPANY}{BLACK} набыў эксклюзыўныя транспартныя правы ў гэтым населеным пункце.
 
 STR_STATION_VIEW_RATINGS_BUTTON                                 :{BLACK}Рэйтынґ
 STR_STATION_VIEW_RATINGS_TOOLTIP                                :{BLACK}Паказаць рэйтынґ станцыі
