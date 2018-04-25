@@ -449,6 +449,8 @@ static char *FormatGenericCurrency(char *buff, const CurrencySpec *spec, Money n
 
 	/* convert from negative */
 	if (number < 0) {
+		if (buff + Utf8CharLen(SCC_PUSH_COLOUR) > last) return buff;
+		buff += Utf8Encode(buff, SCC_PUSH_COLOUR);
 		if (buff + Utf8CharLen(SCC_RED) > last) return buff;
 		buff += Utf8Encode(buff, SCC_RED);
 		buff = strecpy(buff, "-", last);
@@ -485,8 +487,8 @@ static char *FormatGenericCurrency(char *buff, const CurrencySpec *spec, Money n
 	if (spec->symbol_pos != 0) buff = strecpy(buff, spec->suffix, last);
 
 	if (negative) {
-		if (buff + Utf8CharLen(SCC_PREVIOUS_COLOUR) > last) return buff;
-		buff += Utf8Encode(buff, SCC_PREVIOUS_COLOUR);
+		if (buff + Utf8CharLen(SCC_POP_COLOUR) > last) return buff;
+		buff += Utf8Encode(buff, SCC_POP_COLOUR);
 		*buff = '\0';
 	}
 
@@ -2030,10 +2032,8 @@ bool MissingGlyphSearcher::FindMissingGlyphs(const char **str)
 		FontSize size = this->DefaultSize();
 		if (str != NULL) *str = text;
 		for (WChar c = Utf8Consume(&text); c != '\0'; c = Utf8Consume(&text)) {
-			if (c == SCC_TINYFONT) {
-				size = FS_SMALL;
-			} else if (c == SCC_BIGFONT) {
-				size = FS_LARGE;
+			if (c >= SCC_FIRST_FONT && c <= SCC_LAST_FONT) {
+				size = (FontSize)(c - SCC_FIRST_FONT);
 			} else if (!IsInsideMM(c, SCC_SPRITE_START, SCC_SPRITE_END) && IsPrintable(c) && !IsTextDirectionChar(c) && c != '?' && GetGlyph(size, c) == question_mark[size]) {
 				/* The character is printable, but not in the normal font. This is the case we were testing for. */
 				return true;

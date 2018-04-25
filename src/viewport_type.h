@@ -126,4 +126,14 @@ enum ViewportDragDropSelectionProcess {
 	DDSP_COPY_TO_CLIPBOARD,    ///< Copy area to clipboard
 };
 
+
+/**
+ * Target of the viewport scrolling GS method
+ */
+enum ViewportScrollTarget {
+	VST_EVERYONE, ///< All players
+	VST_COMPANY,  ///< All players in specific company
+	VST_CLIENT,   ///< Single player
+};
+
 #endif /* VIEWPORT_TYPE_H */
