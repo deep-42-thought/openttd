@@ -879,6 +879,12 @@
     <ClInclude Include="..\src\news_type.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\music\midi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\music\midifile.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\src\music\null_m.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1225,6 +1231,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\window_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sound\xaudio2_s.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\zoom_func.h">
@@ -3063,6 +3072,9 @@
     <ClCompile Include="..\src\music\null_m.cpp">
       <Filter>Music</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\music\midifile.cpp">
+      <Filter>Music</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\music\win32_m.cpp">
       <Filter>Music</Filter>
     </ClCompile>
@@ -3073,6 +3085,9 @@
       <Filter>Sound</Filter>
     </ClCompile>
     <ClCompile Include="..\src\sound\win32_s.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sound\xaudio2_s.cpp">
       <Filter>Sound</Filter>
     </ClCompile>
     <ClCompile Include="..\src\os\windows\crashlog_win.cpp">

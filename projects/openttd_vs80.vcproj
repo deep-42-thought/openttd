@@ -1483,6 +1483,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\..\src\music\midi.h"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\music\midifile.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\..\src\music\null_m.h"
 				>
 			</File>
@@ -1944,6 +1952,10 @@
 			</File>
 			<File
 				RelativePath=".\..\src\window_type.h"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sound\xaudio2_s.h"
 				>
 			</File>
 			<File
@@ -4507,6 +4519,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\..\src\music\midifile.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\..\src\music\win32_m.cpp"
 				>
 			</File>
@@ -4524,6 +4540,10 @@
 			</File>
 			<File
 				RelativePath=".\..\src\sound\win32_s.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sound\xaudio2_s.cpp"
 				>
 			</File>
 		</Filter>
