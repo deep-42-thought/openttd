@@ -342,8 +342,7 @@ static void LoadIntroGame(bool load_newgrfs = true)
 
 	CheckForMissingGlyphs();
 
-	/* Play main theme */
-	if (MusicDriver::GetInstance()->IsSongPlaying()) ResetMusic();
+	MusicLoop(); // ensure music is correct
 }
 
 void MakeNewgameSettingsLive()
