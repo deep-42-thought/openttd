@@ -1781,8 +1781,7 @@ make_cflags_and_ldflags() {
 		CFLAGS="$CFLAGS `$freetype_config --cflags | tr '\n\r' '  '`"
 
 		if [ "$enable_static" != "0" ]; then
-			# Is it possible to do static with freetype, if so: how?
-			LIBS="$LIBS `$freetype_config --libs | tr '\n\r' '  '`"
+			LIBS="$LIBS `$freetype_config --libs --static | tr '\n\r' '  '` -lfreetype"
 		else
 			LIBS="$LIBS `$freetype_config --libs | tr '\n\r' '  '`"
 		fi
