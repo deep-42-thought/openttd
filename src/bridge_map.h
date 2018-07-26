@@ -174,11 +174,12 @@ static inline void MakeBridgeRamp(typename TileIndexT<Tgeneric>::T t, Owner o, B
 	SetTileType(t, MP_TUNNELBRIDGE);
 	SetTileOwner(t, o);
 	GetTile(t)->m2 = 0;
-	GetTile(t)->m3 = rt;
+	GetTile(t)->m3 = 0;
 	GetTile(t)->m4 = 0;
 	GetTile(t)->m5 = 1 << 7 | tt << 2 | d;
 	SB(GetTileEx(t)->m6, 2, 4, bridgetype);
 	GetTileEx(t)->m7 = 0;
+	GetTileEx(t)->m8 = rt;
 }
 /** @copydoc MakeBridgeRamp(TileIndexT<Tgeneric>::T,Owner,BridgeType,DiagDirection,TransportType,uint)*/
 static inline void MakeBridgeRamp(TileIndex t, Owner o, BridgeType bridgetype, DiagDirection d, TransportType tt, uint rt) { return MakeBridgeRamp<false>(t, o, bridgetype, d, tt, rt); }

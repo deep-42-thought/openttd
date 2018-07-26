@@ -690,11 +690,12 @@ static inline void MakeRoadCrossing(typename TileIndexT<Tgeneric>::T t, Owner ro
 	SetTileType(t, MP_ROAD);
 	SetTileOwner(t, rail);
 	GetTile(t)->m2 = town;
-	GetTile(t)->m3 = rat;
+	GetTile(t)->m3 = 0;
 	GetTile(t)->m4 = 0;
 	GetTile(t)->m5 = ROAD_TILE_CROSSING << 6 | roaddir;
 	SB(GetTileEx(t)->m6, 2, 4, 0);
 	GetTileEx(t)->m7 = rot << 6 | road;
+	GetTileEx(t)->m8 = rat;
 	SetRoadOwner(t, ROADTYPE_TRAM, tram);
 }
 /** @copydoc MakeRoadCrossing(TileIndexT<Tgeneric>::T,Owner,Owner,Owner,Axis,RailType,RoadTypes,uint) */

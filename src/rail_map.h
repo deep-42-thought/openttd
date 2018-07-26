@@ -146,7 +146,7 @@ static inline bool IsRailDepotTile(GenericTileIndex t) { return IsRailDepotTile<
 template <bool Tgeneric>
 static inline RailType GetRailType(typename TileIndexT<Tgeneric>::T t)
 {
-	return (RailType)GB(GetTile(t)->m3, 0, 4);
+	return (RailType)GB(GetTileEx(t)->m8, 0, 4);
 }
 /** @copydoc GetRailType(TileIndexT<Tgeneric>::T) */
 static inline RailType GetRailType(TileIndex t) { return GetRailType<false>(t); }
@@ -161,7 +161,7 @@ static inline RailType GetRailType(GenericTileIndex t) { return GetRailType<true
 template <bool Tgeneric>
 static inline void SetRailType(typename TileIndexT<Tgeneric>::T t, RailType r)
 {
-	SB(GetTile(t)->m3, 0, 4, r);
+	SB(GetTileEx(t)->m8, 0, 4, r);
 }
 /** @copydoc SetRailType(TileIndexT<Tgeneric>::T,RailType) */
 static inline void SetRailType(TileIndex t, RailType r) { SetRailType<false>(t, r); }
@@ -638,11 +638,12 @@ static inline void MakeRailNormal(typename TileIndexT<Tgeneric>::T t, Owner o, T
 	SetTileType(t, MP_RAILWAY);
 	SetTileOwner(t, o);
 	GetTile(t)->m2 = 0;
-	GetTile(t)->m3 = r;
+	GetTile(t)->m3 = 0;
 	GetTile(t)->m4 = 0;
 	GetTile(t)->m5 = RAIL_TILE_NORMAL << 6 | b;
 	SB(GetTileEx(t)->m6, 2, 4, 0);
 	GetTileEx(t)->m7 = 0;
+	GetTileEx(t)->m8 = r;
 }
 /** @copydoc MakeRailNormal(TileIndexT<Tgeneric>::T,Owner,TrackBits,RailType) */
 static inline void MakeRailNormal(TileIndex t, Owner o, TrackBits b, RailType r) { MakeRailNormal<false>(t, o, b, r); }
@@ -655,11 +656,12 @@ inline void MakeRailDepot(typename TileIndexT<Tgeneric>::T t, Owner o, DepotID d
 	SetTileType(t, MP_RAILWAY);
 	SetTileOwner(t, o);
 	GetTile(t)->m2 = did;
-	GetTile(t)->m3 = r;
+	GetTile(t)->m3 = 0;
 	GetTile(t)->m4 = 0;
 	GetTile(t)->m5 = RAIL_TILE_DEPOT << 6 | d;
 	SB(GetTileEx(t)->m6, 2, 4, 0);
 	GetTileEx(t)->m7 = 0;
+	GetTileEx(t)->m8 = r;
 }
 /** @copydoc MakeRailDepot(TileIndexT<Tgeneric>::T,Owner,DepotID,DiagDirection,RailType) */
 static inline void MakeRailDepot(TileIndex t, Owner o, DepotID did, DiagDirection d, RailType r) { MakeRailDepot<false>(t, o, did, d, r); }
