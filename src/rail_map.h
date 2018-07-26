@@ -146,7 +146,7 @@ static inline bool IsRailDepotTile(GenericTileIndex t) { return IsRailDepotTile<
 template <bool Tgeneric>
 static inline RailType GetRailType(typename TileIndexT<Tgeneric>::T t)
 {
-	return (RailType)GB(GetTileEx(t)->m8, 0, 4);
+	return (RailType)GB(GetTileEx(t)->m8, 0, 6);
 }
 /** @copydoc GetRailType(TileIndexT<Tgeneric>::T) */
 static inline RailType GetRailType(TileIndex t) { return GetRailType<false>(t); }
@@ -161,7 +161,7 @@ static inline RailType GetRailType(GenericTileIndex t) { return GetRailType<true
 template <bool Tgeneric>
 static inline void SetRailType(typename TileIndexT<Tgeneric>::T t, RailType r)
 {
-	SB(GetTileEx(t)->m8, 0, 4, r);
+	SB(GetTileEx(t)->m8, 0, 6, r);
 }
 /** @copydoc SetRailType(TileIndexT<Tgeneric>::T,RailType) */
 static inline void SetRailType(TileIndex t, RailType r) { SetRailType<false>(t, r); }
